@@ -1,0 +1,87 @@
+body {
+    font-family: 'Manrope',
+        sans-serif;
+    background-color: #fbf9f8;
+    color: #1b1c1c;
+}
+
+.font-serif {
+    font-family: 'Noto Serif', serif;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0,
+        'wght' 300, 'GRAD' 0,
+        'opsz' 24;
+}
+
+.primary-gradient {
+    background: linear-gradient(45deg, #735c00, #D4AF37);
+}
+
+.nav-link {
+    @apply text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition;
+}
+
+.mobile-link {
+    @apply text-stone-700 dark:text-stone-300 text-lg border-b border-stone-200 pb-2;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+
+#productModal::-webkit-scrollbar {
+    width: 6px;
+}
+
+#productModal::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+select {
+    background-image: none !important;
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    print-color-adjust: exact;
+}
+
+
+.brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 7vw, 32px);
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    line-height: 1;
+}
+
+.rounded-full {
+    border-radius: 8rem !important;
+}
+
+.bg-fondo {
+    background: radial-gradient(circle at top,
+            rgba(212, 175, 55, 0.08),
+            transparent 40%),
+        linear-gradient(135deg,
+            #050505 0%,
+            #0f0f0f 50%,
+            #1c1c1c 100%);
+}
+
+.bg-gold-gradient {
+    background: linear-gradient(45deg, #735c00, #D4AF37);
+}
