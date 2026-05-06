@@ -73,7 +73,8 @@ class HomeController extends Controller
 
     public function contactanos()
     {
-        return view('contact');
+        $business = Company::find(1);
+        return view('contact', compact('business'));
     }
     
     public function apiBrand()
