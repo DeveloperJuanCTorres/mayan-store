@@ -71,6 +71,12 @@ class HomeController extends Controller
         return Product::with('brand')->findOrFail($id);
     }
 
+    public function about()
+    {
+        $business = Company::find(1);
+        return view('about', compact('business'));
+    }
+
     public function contactanos()
     {
         $business = Company::find(1);

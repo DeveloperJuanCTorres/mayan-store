@@ -14,7 +14,7 @@
         <div class="hidden md:flex items-center gap-8 font-serif">
             <a href="{{ route('home') }}" class="nav-link">Inicio</a>
             <a href="{{ route('tienda') }}" class="nav-link">Tienda</a>
-            <a href="#" class="nav-link">Nosotros</a>
+            <a href="{{ route('about') }}" class="nav-link">Nosotros</a>
             <a href="{{ route('contactanos') }}" class="nav-link">Contáctanos</a>
         </div>
 
@@ -43,7 +43,7 @@
         <div class="flex flex-col gap-4 font-serif">
             <a href="{{ route('home') }}" class="mobile-link">Inicio</a>
             <a href="{{ route('tienda') }}" class="mobile-link">Tienda</a>
-            <a href="#" class="mobile-link">Nosotros</a>
+            <a href="{{ route('about') }}" class="mobile-link">Nosotros</a>
             <a href="{{ route('contactanos') }}" class="mobile-link">Contáctanos</a>
             <button class="text-left text-xs uppercase tracking-widest font-bold text-stone-600">
                 Login

@@ -106,7 +106,7 @@
 
                     <img
                         class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-110 group-hover:rotate-1"
-                        src="{{ $firstImage ?? asset('storage/' . $business->image) }}"
+                        src="{{ $firstImage ?? asset('images/product-default.png') }}"
                         alt="{{ $producto->name }}"
                     >
 
@@ -185,7 +185,7 @@
 
                     <img
                         class="w-full h-[750px] object-cover"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6_uABuTPCDIdmcmbfHRy-ErMtKya8fSls4RcMNjaXSF-GYHauzeSGmTnw0qYa0EnfIO7EJSpkKquiH3zjeMRcgsQTTkC7AJ_AoQfxGMUcYphWPk0j4caVkUmQd0tW5u7SvsnqSlu7tpfsz_JjxV3FJMIR5cPdS_5N6XIDbf3GjKz6sDpTD8iGlgjys2sLE0KVgBepKlZKYIW9pOiOWauK8peXWaZHfGkxdQivV4hJzj_1QcH0tkRhg4wKZNtcSVJw-wQJeqx1MCKx"
+                        src="{{ asset('images/product-default.png') }}"
                         alt="Luxury">
 
                 </div>
@@ -228,6 +228,7 @@
         </div>
 
     </section>
+
     <!-- MODAL -->
     <div id="productModal"
         class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-2xl overflow-y-auto">
@@ -246,19 +247,26 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
 
                     <!-- IMAGE -->
+                    <!-- LEFT -->
                     <div class="lg:col-span-7">
 
-                        <div class="relative overflow-hidden rounded-[32px] bg-white">
+                        <!-- MAIN IMAGE -->
+                        <div class="relative overflow-hidden rounded-[32px] bg-white border border-[#eee]">
 
                             <img id="modalImage"
-                                class="w-full h-[700px] object-cover"
-                                src=""
-                                alt="">
+                                class="w-full h-[700px] object-cover transition-all duration-500"
+                                src="{{ asset('images/product-default.png') }}"
+                                alt="Producto">
 
                             <div class="absolute top-6 left-6 px-5 py-2 rounded-full bg-white/80 backdrop-blur-xl text-[10px] tracking-[0.3em] uppercase">
-                                Luxury Edition
+                                Luxury Jewelry
                             </div>
 
+                        </div>
+
+                        <!-- THUMBNAILS -->
+                        <div id="modalThumbnails"
+                            class="grid grid-cols-4 gap-4 mt-5">
                         </div>
 
                     </div>
@@ -330,6 +338,9 @@
 </div>
 
 
+<script>
+    const fallbackImage = @json(asset('images/product-default.png'));
+</script>
 
 <script>
 
@@ -356,21 +367,79 @@
 
             document.getElementById('quantity').innerText = currentQty;
 
+            // DATA
             document.getElementById('modalName').innerText = product.name;
 
             document.getElementById('modalPrice').innerText =
                 'S/. ' + parseFloat(product.price).toFixed(2);
 
             document.getElementById('modalDescription').innerText =
-                product.description ?? '';
+                product.description ?? 'Sin descripción disponible.';
 
             document.getElementById('stock').innerText =
                 `Stock disponible (${product.stock} unidades)`;
 
-            if(product.image){
+
+            // IMAGES
+            let images = [];
+
+            try {
+
+                if (product.images) {
+
+                    images = JSON.parse(product.images);
+
+                }
+
+            } catch (e) {
+
+                console.error('Error parseando imágenes');
+
+            }
+
+            // MAIN IMAGE
+            if (
+                images &&
+                images.length > 0 &&
+                images[0]['url_imagen']
+            ) {
 
                 document.getElementById('modalImage').src =
-                    '/storage/' + product.image;
+                    images[0]['url_imagen'];
+
+            } else {
+
+                document.getElementById('modalImage').src =
+                    fallbackImage;
+
+            }
+
+            // THUMBNAILS
+            const thumbnails = document.getElementById('modalThumbnails');
+
+            thumbnails.innerHTML = '';
+
+            if (images.length > 1) {
+
+                images.forEach((img) => {
+
+                    const imageUrl = img['url_imagen'] ?? fallbackImage;
+
+                    thumbnails.innerHTML += `
+                    
+                        <button
+                            onclick="changeMainImage('${imageUrl}')"
+                            class="overflow-hidden rounded-2xl border border-[#eee] hover:border-[#c8a96b] transition group bg-white">
+
+                            <img
+                                src="${imageUrl}"
+                                class="w-full h-32 object-cover group-hover:scale-105 transition duration-500">
+
+                        </button>
+
+                    `;
+
+                });
 
             }
 
@@ -406,6 +475,12 @@
         }, 200);
 
         document.body.classList.remove('overflow-hidden');
+
+    }
+
+    function changeMainImage(src) {
+
+        document.getElementById('modalImage').src = src;
 
     }
 

@@ -30,7 +30,22 @@
         <div class="flex flex-col lg:flex-row gap-16">
 
             <!-- SIDEBAR -->
-            <aside class="w-full lg:w-72 sticky top-28 h-fit">
+            <!-- MOBILE FILTER BUTTON -->
+            <div class="lg:hidden mb-10">
+
+                <button onclick="openFilters()"
+                    class="flex items-center gap-3 px-6 py-4 rounded-full bg-white border border-[#e8e3db] shadow-sm uppercase tracking-[0.25em] text-[11px]">
+
+                    <span>Filtros</span>
+
+                    <span>☰</span>
+
+                </button>
+
+            </div>
+
+            <!-- DESKTOP SIDEBAR -->
+            <aside class="hidden lg:block w-full lg:w-72 sticky top-28 h-fit">
 
                 <div class="bg-white rounded-3xl p-8 shadow-sm border border-[#eee]">
 
@@ -44,7 +59,7 @@
 
                         <li>
                             <a href="{{ route('tienda', ['category' => $category->id]) }}"
-                               class="flex items-center justify-between text-sm tracking-wide text-[#555] hover:text-[#c8a96b] transition-all duration-300">
+                            class="flex items-center justify-between text-sm tracking-wide text-[#555] hover:text-[#c8a96b] transition-all duration-300">
 
                                 <span>{{ $category->name }}</span>
 
@@ -85,7 +100,7 @@
 
                             <img
                                 class="w-full h-[430px] object-cover transition duration-700 group-hover:scale-110 group-hover:rotate-1"
-                                src="{{ $firstImage ?? asset('storage/' . $business->image) }}"
+                                src="{{ $firstImage ?? asset('images/product-default.png') }}"
                                 alt="{{ $product->name }}"
                             >
 
@@ -141,44 +156,50 @@
 
     <!-- MODAL -->
     <div id="productModal"
-        class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-2xl overflow-y-auto">
+        class="fixed inset-0 z-[9999] hidden bg-black/70 backdrop-blur-2xl overflow-y-auto">
 
-        <div class="min-h-screen flex items-start justify-center p-6 lg:p-10">
+        <div class="w-full min-h-screen flex items-center justify-center p-4 lg:p-10">
 
             <div id="modalContent"
-                class="w-full max-w-7xl bg-[#fdfbf8] rounded-[40px] p-8 lg:p-12 relative scale-95 opacity-0 transition-all duration-300">
+                class="w-full max-w-7xl bg-[#fdfbf8] rounded-[40px] p-6 lg:p-12 relative scale-95 opacity-0 transition-all duration-300 shadow-2xl">
 
                 <!-- CLOSE -->
                 <button onclick="closeProductModal()"
-                        class="absolute top-8 right-8 text-[#777] hover:text-black text-xl transition">
+                        class="absolute top-8 right-8 z-50 text-[#777] hover:text-black text-2xl transition">
                     ✕
                 </button>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
 
-                    <!-- IMAGES -->
+                    <!-- LEFT -->
                     <div class="lg:col-span-7">
 
-                        <div class="relative overflow-hidden rounded-[32px] bg-white">
+                        <!-- MAIN IMAGE -->
+                        <div class="relative overflow-hidden rounded-[32px] bg-white border border-[#eee]">
 
                             <img id="modalImage"
-                                class="w-full h-[700px] object-cover"
-                                src=""
-                                alt="">
+                                class="w-full h-[700px] object-cover transition-all duration-500"
+                                src="{{ asset('images/product-default.png') }}"
+                                alt="Producto">
 
                             <div class="absolute top-6 left-6 px-5 py-2 rounded-full bg-white/80 backdrop-blur-xl text-[10px] tracking-[0.3em] uppercase">
-                                Limited Edition
+                                Luxury Jewelry
                             </div>
 
                         </div>
 
+                        <!-- THUMBNAILS -->
+                        <div id="modalThumbnails"
+                            class="grid grid-cols-4 gap-4 mt-5">
+                        </div>
+
                     </div>
 
-                    <!-- INFO -->
-                    <div class="lg:col-span-5 lg:sticky top-24">
+                    <!-- RIGHT -->
+                    <div class="lg:col-span-5 lg:sticky top-10">
 
                         <p class="uppercase tracking-[0.4em] text-[#c8a96b] text-xs mb-5">
-                            Luxury Collection
+                            Colección Exclusiva
                         </p>
 
                         <h1 id="modalName"
@@ -193,17 +214,22 @@
                         class="text-[#666] leading-8 text-lg mb-10">
                         </p>
 
+                        <!-- STOCK -->
                         <div class="flex items-center gap-3 mb-10">
+
                             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
 
-                            <span id="stock" class="text-sm text-[#555]"></span>
+                            <span id="stock"
+                                class="text-sm text-[#555]">
+                            </span>
+
                         </div>
 
                         <!-- QUANTITY -->
                         <div class="flex items-center justify-between p-2 bg-white rounded-full border border-[#eee] w-40 mb-10">
 
                             <button onclick="decreaseQty()"
-                                    class="w-10 h-10 flex items-center justify-center hover:text-[#c8a96b]">
+                                    class="w-10 h-10 flex items-center justify-center hover:text-[#c8a96b] transition">
                                 −
                             </button>
 
@@ -213,7 +239,7 @@
                             </span>
 
                             <button onclick="increaseQty()"
-                                    class="w-10 h-10 flex items-center justify-center hover:text-[#c8a96b]">
+                                    class="w-10 h-10 flex items-center justify-center hover:text-[#c8a96b] transition">
                                 +
                             </button>
 
@@ -231,6 +257,7 @@
                         <div class="grid grid-cols-2 gap-6 mt-14 pt-10 border-t border-[#eee]">
 
                             <div>
+
                                 <p class="uppercase tracking-[0.2em] text-[10px] text-[#c8a96b] mb-2">
                                     Delivery
                                 </p>
@@ -238,9 +265,11 @@
                                 <p class="text-sm text-[#555]">
                                     Envío Express Premium
                                 </p>
+
                             </div>
 
                             <div>
+
                                 <p class="uppercase tracking-[0.2em] text-[10px] text-[#c8a96b] mb-2">
                                     Garantía
                                 </p>
@@ -248,6 +277,7 @@
                                 <p class="text-sm text-[#555]">
                                     Autenticidad Garantizada
                                 </p>
+
                             </div>
 
                         </div>
@@ -262,9 +292,78 @@
 
     </div>
 
+    <!-- MOBILE FILTERS -->
+    <div id="mobileFilters"
+        class="fixed inset-0 z-[9998] hidden">
+
+        <!-- overlay -->
+        <div onclick="closeFilters()"
+            class="absolute inset-0 bg-black/50 backdrop-blur-sm opacity-0 transition-all duration-300"
+            id="filtersOverlay">
+        </div>
+
+        <!-- panel -->
+        <div id="filtersPanel"
+            class="absolute left-0 top-0 h-full w-[85%] max-w-sm bg-[#fdfbf8] shadow-2xl p-8 transform -translate-x-full transition-all duration-500 overflow-y-auto">
+
+            <!-- header -->
+            <div class="flex items-center justify-between mb-10">
+
+                <div>
+
+                    <p class="uppercase tracking-[0.3em] text-[#c8a96b] text-[10px] mb-2">
+                        Luxury Jewelry
+                    </p>
+
+                    <h3 class="text-2xl font-serif">
+                        Categorías
+                    </h3>
+
+                </div>
+
+                <button onclick="closeFilters()"
+                    class="text-2xl text-[#777] hover:text-black">
+                    ✕
+                </button>
+
+            </div>
+
+            <!-- categories -->
+            <ul class="space-y-5">
+
+                @foreach($categories as $category)
+
+                <li>
+
+                    <a href="{{ route('tienda', ['category' => $category->id]) }}"
+                    class="flex items-center justify-between py-4 border-b border-[#eee] text-[#444] hover:text-[#c8a96b] transition-all">
+
+                        <span class="text-sm tracking-wide">
+                            {{ $category->name }}
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+                </li>
+
+                @endforeach
+
+            </ul>
+
+        </div>
+
+    </div>
+
 </div>
 
 
+<script>
+    const fallbackImage = @json(asset('images/product-default.png'));
+</script>
 
 <script>
 
@@ -291,30 +390,80 @@
 
             document.getElementById('quantity').innerText = currentQty;
 
+            // DATA
             document.getElementById('modalName').innerText = product.name;
+            document.getElementById('modalPrice').innerText = 'S/. ' + parseFloat(product.price).toFixed(2);
+            document.getElementById('modalDescription').innerText = product.description ?? 'Sin descripción disponible.';
+            document.getElementById('stock').innerText = `Stock disponible (${product.stock} unidades)`;
 
-            document.getElementById('modalPrice').innerText =
-                'S/. ' + parseFloat(product.price).toFixed(2);
+            // IMAGES
+            let images = [];
 
-            document.getElementById('modalDescription').innerText =
-                product.description ?? '';
+            try {
 
-            document.getElementById('stock').innerText =
-                `Stock disponible (${product.stock} unidades)`;
+                if (product.images) {
 
-            if(product.image){
-                document.getElementById('modalImage').src =
-                    '/storage/' + product.image;
+                    images = JSON.parse(product.images);
+
+                }
+
+            } catch (e) {
+
+                console.error('Error parseando imágenes');
+
+            }
+
+            // const fallbackImage = "{{ asset('storage/' . $business->image) }}";
+
+            // MAIN IMAGE
+            if (images.length > 0) {
+
+                document.getElementById('modalImage').src = images[0]['url_imagen'];
+
+            } else {
+
+                document.getElementById('modalImage').src = fallbackImage;
+
+            }
+
+            // THUMBNAILS
+            const thumbnails = document.getElementById('modalThumbnails');
+
+            thumbnails.innerHTML = '';
+
+            if (images.length > 1) {
+
+                images.forEach((img) => {
+
+                    const imageUrl = img['url_imagen'] ?? fallbackImage;
+
+                    thumbnails.innerHTML += `
+                    
+                        <button
+                            onclick="changeMainImage('${imageUrl}')"
+                            class="overflow-hidden rounded-2xl border border-[#eee] hover:border-[#c8a96b] transition group bg-white">
+
+                            <img
+                                src="${imageUrl}"
+                                class="w-full h-32 object-cover group-hover:scale-105 transition duration-500">
+
+                        </button>
+
+                    `;
+
+                });
+
             }
 
         } catch (error) {
-            console.error(error);
+
+            console.error('Error cargando producto:', error);
+
         }
 
         setTimeout(() => {
 
             content.classList.remove('scale-95', 'opacity-0');
-
             content.classList.add('scale-100', 'opacity-100');
 
         }, 10);
@@ -340,9 +489,15 @@
 
     }
 
+    function changeMainImage(src) {
+
+        document.getElementById('modalImage').src = src;
+
+    }
+
     function increaseQty() {
 
-        if(currentQty < maxStock){
+        if (currentQty < maxStock) {
 
             currentQty++;
 
@@ -354,7 +509,7 @@
 
     function decreaseQty() {
 
-        if(currentQty > 1){
+        if (currentQty > 1) {
 
             currentQty--;
 
@@ -366,10 +521,9 @@
 
     async function addToCart() {
 
-        if(currentQty > maxStock){
+        if (currentQty > maxStock) {
 
             alert('Cantidad supera el stock disponible');
-
             return;
 
         }
@@ -379,26 +533,74 @@
             method: 'POST',
 
             headers: {
+
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+
             },
 
             body: JSON.stringify({
+
                 product_id: currentProductId,
                 quantity: currentQty
+
             })
 
         });
 
         const data = await res.json();
 
-        if(data.success){
+        if (data.success) {
 
             document.getElementById('cartCount').innerText = data.count;
 
             alert('Producto agregado correctamente');
 
         }
+
+    }
+
+</script>
+
+<script>
+
+    function openFilters() {
+
+        const filters = document.getElementById('mobileFilters');
+        const panel = document.getElementById('filtersPanel');
+        const overlay = document.getElementById('filtersOverlay');
+
+        filters.classList.remove('hidden');
+
+        setTimeout(() => {
+
+            panel.classList.remove('-translate-x-full');
+
+            overlay.classList.remove('opacity-0');
+
+        }, 10);
+
+        document.body.classList.add('overflow-hidden');
+
+    }
+
+    function closeFilters() {
+
+        const filters = document.getElementById('mobileFilters');
+        const panel = document.getElementById('filtersPanel');
+        const overlay = document.getElementById('filtersOverlay');
+
+        panel.classList.add('-translate-x-full');
+
+        overlay.classList.add('opacity-0');
+
+        setTimeout(() => {
+
+            filters.classList.add('hidden');
+
+        }, 400);
+
+        document.body.classList.remove('overflow-hidden');
 
     }
 
