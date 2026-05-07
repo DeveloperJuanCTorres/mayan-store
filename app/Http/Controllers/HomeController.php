@@ -177,7 +177,8 @@ class HomeController extends Controller
                                 'brand_id' => $marca[0]->id,
                                 'id_sistema' => $item->codigo,
                                 'unidad_medida' => $item->presentacion,
-                                'stock' =>$item->stock
+                                'stock' =>$item->stock,
+                                'images' => $item->imagen_web
                             ]);
                         }
                     }             

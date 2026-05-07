@@ -42,10 +42,13 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-16">
                 @foreach($products as $product)
                 <div class="group">
+                    @php
+                        $images = json_decode($product->images, true);
+                        $firstImage = $images[0]['url_imagen'] ?? null;
+                    @endphp
                     <div class="relative overflow-hidden aspect-[3/4] mb-4 bg-surface-container-low rounded-xl">
                         <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            data-alt="Close-up of a handcrafted gold pendant necklace with intricate Mayan-inspired geometric engravings on a minimalist grey background"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB6gbdaGDI4WRLIbTVUfYEstXmfiXmEZbR5TgRF5vuudYGnC6byK4kPV7NtLUnOw0yAe_o55xRFPqdvRUSZQg2GAYY4lOp7oyTtPYG7znqNxbnfx9_zFVEhXdkVA0UgCoXn60V26g_8XhDMWM2P-dDtGW3ZxdOXtHsiEuXUOa6n_LHwNOIaC3QhvBKBRM0M_7SZaEzx_zYNXnHLFdbLuZvyfh2Km00F_Y9lvCkehOVgBd18x__H4rBQCd6kZcZ67QcDY6-BWs_iVxv" />
+                            src="{{ $firstImage ?? asset('storage/' . $business->image) }}" alt="producto"/>
                         <div class="absolute top-4 left-4 bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
                             <span class="text-[10px] font-label uppercase tracking-widest text-primary font-bold">
                                 Nuevo

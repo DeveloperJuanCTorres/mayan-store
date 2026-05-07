@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('apikey')->group(function () {
+    
+    Route::post('editarstock', [ProductController::class, 'editarStock']);
+    Route::post('addbrand', [ProductController::class, 'addBrand']);
+    Route::post('addcategory', [ProductController::class, 'addCategory']);
+    Route::post('addproduct', [ProductController::class, 'addProduct']);
+    Route::get('/products', [ProductController::class, 'listProducts']);
+
 });
