@@ -5,7 +5,7 @@
 <div class="bg-[#f8f6f2] text-[#1a1a1a] overflow-hidden" style="padding-top: 130px;">
 
     <!-- HERO CAROUSEL -->
-    <section class="relative overflow-hidden h-[250px] md:h-[320px] lg:h-[420px] xl:h-[450px]">
+    <section class="relative overflow-hidden h-[250px] md:h-[320px] lg:h-[420px] xl:h-[600px]">
 
         <!-- SLIDES -->
         <div id="heroSlider" class="relative w-full h-full">
@@ -30,6 +30,13 @@
                     <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 w-full">
 
                         <div class="max-w-3xl">
+
+                            <!-- DESCRIPTION -->
+                            <p class="text-[#1f1f1f] text-lg md:text-3xl leading-[1.8] tracking-[0.01em] max-w-2xl mb-10 font-medium drop-shadow-[0_1px_2px_rgba(255,255,255,0.35)]"
+                            style="font-family: 'Cormorant Garamond', serif;">
+                                
+                                {{$banner->descripcion}}
+                            </p>
 
                             <a href="{{ route('tienda') }}"
                             class="inline-flex items-center gap-4 bg-white text-black px-10 py-5 rounded-full uppercase tracking-[0.25em] text-xs font-semibold hover:bg-[#d4b178] hover:text-white transition-all duration-500">
