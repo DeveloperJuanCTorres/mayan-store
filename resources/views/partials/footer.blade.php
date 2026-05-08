@@ -1,90 +1,278 @@
-<footer class="bg-stone-100 pt-24 pb-12 w-full border-none">
-    <div
-        class="grid grid-cols-1 md:grid-cols-4 gap-16 px-12 max-w-screen-2xl mx-auto font-serif text-sm leading-relaxed">
-        <!-- Column 1: SOBRE NOSOTROS -->
-        <div class="flex flex-col space-y-6">
-            <div class="text-lg font-serif uppercase tracking-widest text-stone-900">The Gilded Curator</div>
-            <p class="text-stone-500 font-body leading-relaxed">
-                Un espacio dedicado a la curaduría de piezas excepcionales. Fusionamos el legado artesanal con una
-                visión contemporánea para crear tesoros que perduran en el tiempo.
+<!-- FOOTER -->
+<footer class="relative bg-[#0f0f0f] text-white overflow-hidden">
+
+    <!-- DECORATION -->
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#c8a96b] to-transparent"></div>
+
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-[#c8a96b]/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-[#c8a96b]/10 rounded-full blur-3xl"></div>
+
+    <!-- TOP -->
+    <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 py-24 relative z-10">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+
+            <!-- BRAND -->
+            <div>
+
+                <h2 class="text-3xl font-serif font-light mb-8 leading-tight">
+                    Luxury <br>
+
+                    <span class="italic text-[#c8a96b]">
+                        Jewelry
+                    </span>
+
+                </h2>
+
+                <p class="text-white/60 leading-relaxed text-sm mb-8">
+                    Creamos piezas exclusivas inspiradas en la elegancia atemporal,
+                    combinando lujo contemporáneo con detalles artesanales únicos.
+                </p>
+
+                <!-- SOCIAL -->
+                <div class="flex items-center gap-4">
+
+                    <a href="#"
+                    class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#c8a96b] hover:border-[#c8a96b] transition-all duration-500">
+
+                        <i class="fab fa-facebook-f"></i>
+
+                    </a>
+
+                    <a href="#"
+                    class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#c8a96b] hover:border-[#c8a96b] transition-all duration-500">
+
+                        <i class="fab fa-instagram"></i>
+
+                    </a>
+
+                    <a href="#"
+                    class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#c8a96b] hover:border-[#c8a96b] transition-all duration-500">
+
+                        <i class="fab fa-tiktok"></i>
+
+                    </a>
+
+                    <a href="#"
+                    class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#c8a96b] hover:border-[#c8a96b] transition-all duration-500">
+
+                        <i class="fab fa-youtube"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- LINKS -->
+            <div>
+
+                <h3 class="uppercase tracking-[0.35em] text-xs text-[#c8a96b] mb-8">
+                    Navegación
+                </h3>
+
+                <ul class="space-y-5 text-sm text-white/60">
+
+                    <li>
+                        <a href="{{ route('home') }}"
+                        class="hover:text-[#c8a96b] transition-all duration-300 flex items-center gap-3">
+
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+
+                            Inicio
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('tienda') }}"
+                        class="hover:text-[#c8a96b] transition-all duration-300 flex items-center gap-3">
+
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+
+                            Tienda
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('about') }}"
+                        class="hover:text-[#c8a96b] transition-all duration-300 flex items-center gap-3">
+
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+
+                            Nosotros
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('contactanos') }}"
+                        class="hover:text-[#c8a96b] transition-all duration-300 flex items-center gap-3">
+
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+
+                            Contacto
+
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- CONTACT -->
+            <div>
+
+                <h3 class="uppercase tracking-[0.35em] text-xs text-[#c8a96b] mb-8">
+                    Contacto
+                </h3>
+
+                <div class="space-y-6 text-sm text-white/60">
+
+                    <div class="flex items-start gap-4">
+
+                        <div class="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center mt-1">
+
+                            <i class="fa-brands fa-whatsapp text-[#25D366]"></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-white mb-1">
+                                WhatsApp
+                            </p>
+
+                            <p>
+                                +51 999 999 999
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="flex items-start gap-4">
+
+                        <div class="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center mt-1">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-white mb-1">
+                                Correo
+                            </p>
+
+                            <p>
+                                contacto@luxuryjewelry.com
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="flex items-start gap-4">
+
+                        <div class="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center mt-1">
+
+                            <i class="fa-regular fa-clock"></i>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-white mb-1">
+                                Horario
+                            </p>
+
+                            <p>
+                                Lunes a Sábado · 9AM - 8PM
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- NEWSLETTER -->
+            <div>
+
+                <h3 class="uppercase tracking-[0.35em] text-xs text-[#c8a96b] mb-8">
+                    Newsletter
+                </h3>
+
+                <p class="text-white/60 text-sm leading-relaxed mb-8">
+                    Suscríbete y recibe acceso exclusivo a nuevas colecciones,
+                    promociones y lanzamientos premium.
+                </p>
+
+                <form class="space-y-4">
+
+                    <input
+                        type="email"
+                        placeholder="Tu correo electrónico"
+                        class="w-full h-14 px-5 rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-[#c8a96b] transition-all">
+
+                    <button
+                        class="w-full h-14 rounded-2xl bg-[#c8a96b] text-black uppercase tracking-[0.25em] text-xs font-semibold hover:bg-white transition-all duration-500">
+
+                        Suscribirme
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="border-t border-white/10 relative z-10">
+
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 py-8 flex flex-col lg:flex-row items-center justify-between gap-6">
+
+            <p class="text-white/40 text-xs tracking-[0.2em] uppercase text-center lg:text-left">
+                © 2026 Luxury Jewelry · Todos los derechos reservados
             </p>
-            <div class="flex space-x-4 pt-2">
-                <a class="text-stone-900 hover:text-yellow-700 transition-colors" href="#">
-                    <span class="material-symbols-outlined text-xl" data-icon="public">public</span>
+
+            <div class="flex items-center gap-8 text-xs uppercase tracking-[0.2em] text-white/40">
+
+                <a href="#"
+                class="hover:text-[#c8a96b] transition-all">
+                    Privacidad
                 </a>
-                <a class="text-stone-900 hover:text-yellow-700 transition-colors" href="#">
-                    <span class="material-symbols-outlined text-xl" data-icon="photo_camera">photo_camera</span>
+
+                <a href="#"
+                class="hover:text-[#c8a96b] transition-all">
+                    Términos
                 </a>
-                <a class="text-stone-900 hover:text-yellow-700 transition-colors" href="#">
-                    <span class="material-symbols-outlined text-xl"
-                        data-icon="brand_awareness">brand_awareness</span>
+
+                <a href="#"
+                class="hover:text-[#c8a96b] transition-all">
+                    Libro de Reclamaciones
                 </a>
+
             </div>
+
         </div>
-        <!-- Column 2: NAVEGACIÓN -->
-        <div class="flex flex-col space-y-4">
-            <h4 class="text-stone-900 font-bold uppercase tracking-widest text-xs mb-2">Navegación</h4>
-            <ul class="space-y-3 font-body text-stone-500">
-                <li><a class="hover:text-yellow-700 transition-colors" href="#">Inicio</a></li>
-                <li><a class="hover:text-yellow-700 transition-colors" href="#">Catálogo</a></li>
-                <li><a class="hover:text-yellow-700 transition-colors" href="#">Contacto</a></li>
-                <li><a class="hover:text-yellow-700 transition-colors" href="#">FAQ</a></li>
-                <li><a class="hover:text-yellow-700 transition-colors" href="#">Términos</a></li>
-            </ul>
-        </div>
-        <!-- Column 3: ATENCIÓN AL CLIENTE -->
-        <div class="flex flex-col space-y-4">
-            <h4 class="text-stone-900 font-bold uppercase tracking-widest text-xs mb-2">Atención al Cliente</h4>
-            <div class="space-y-4 font-body text-stone-500">
-                <div class="flex items-start space-x-3">
-                    <span class="material-symbols-outlined text-stone-400 text-lg" data-icon="chat">chat</span>
-                    <div>
-                        <span class="block text-stone-900 font-semibold text-xs uppercase">WhatsApp</span>
-                        <span class="text-sm">+34 900 123 456</span>
-                    </div>
-                </div>
-                <div class="flex items-start space-x-3">
-                    <span class="material-symbols-outlined text-stone-400 text-lg" data-icon="mail">mail</span>
-                    <div>
-                        <span class="block text-stone-900 font-semibold text-xs uppercase">Email</span>
-                        <span class="text-sm">atelier@gildedcurator.com</span>
-                    </div>
-                </div>
-                <div class="flex items-start space-x-3">
-                    <span class="material-symbols-outlined text-stone-400 text-lg"
-                        data-icon="schedule">schedule</span>
-                    <div>
-                        <span class="block text-stone-900 font-semibold text-xs uppercase">Horario</span>
-                        <span class="text-sm">Lunes - Viernes: 10:00 - 19:00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Column 4: NEWSLETTER -->
-        <div class="flex flex-col space-y-6">
-            <h4 class="text-stone-900 font-bold uppercase tracking-widest text-xs mb-2">Newsletter</h4>
-            <p class="text-stone-500 font-body text-sm">Suscríbete para recibir ofertas exclusivas e historias de
-                nuestro atelier.</p>
-            <div class="flex flex-col space-y-3">
-                <input
-                    class="bg-transparent border-b border-stone-300 py-2 font-body text-sm focus:border-yellow-700 outline-none transition-colors px-0"
-                    placeholder="Tu correo electrónico" type="email" />
-                <button
-                    class="bg-stone-900 text-stone-50 font-label text-xs font-bold tracking-widest uppercase py-4 px-6 hover:bg-yellow-700 transition-all duration-500 active:scale-95">
-                    Suscribirme
-                </button>
-            </div>
-        </div>
+
     </div>
-    <!-- Bottom Footer Section -->
-    <div
-        class="max-w-screen-2xl mx-auto px-12 mt-24 pt-12 border-t border-stone-200 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-stone-400 font-body text-xs tracking-wider">
-            © 2024 The Gilded Curator. All rights reserved. Crafted with Intent.
-        </div>
-        <div class="flex space-x-8 font-body text-xs uppercase tracking-widest text-stone-500">
-            <a class="hover:text-stone-900 transition-colors" href="#">Términos y Condiciones</a>
-            <a class="hover:text-stone-900 transition-colors" href="#">Privacidad</a>
-        </div>
-    </div>
+
 </footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/51999999999"
+   target="_blank"
+   class="fixed bottom-6 right-6 z-[9999] w-16 h-16 rounded-full bg-[#25D366] shadow-[0_10px_40px_rgba(37,211,102,0.45)] flex items-center justify-center text-white text-3xl hover:scale-110 transition-all duration-500">
+
+    <i class="fab fa-whatsapp"></i>
+
+</a>

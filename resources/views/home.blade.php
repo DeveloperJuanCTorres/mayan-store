@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="bg-[#f8f6f2] text-[#1a1a1a] overflow-hidden">
+<div class="bg-[#f8f6f2] text-[#1a1a1a] overflow-hidden" style="padding-top: 130px;">
 
     <!-- HERO CAROUSEL -->
     <section class="relative overflow-hidden h-[250px] md:h-[320px] lg:h-[420px] xl:h-[450px]">

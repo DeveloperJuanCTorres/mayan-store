@@ -5,7 +5,7 @@
 <div class="bg-[#f8f6f2] text-[#1a1a1a] min-h-screen">
 
     <!-- HERO -->
-    <section class="relative pt-12 pb-24 overflow-hidden">
+    <section class="relative pt-48 pb-24 overflow-hidden">
 
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#c8a96b]/10 rounded-full blur-3xl"></div>
 
@@ -16,7 +16,7 @@
                 <div>
 
                     <p class="uppercase tracking-[0.45em] text-[#c8a96b] text-xs mb-8">
-                        Joyería de lujo
+                        Xuping
                     </p>
 
                     <h1 class="text-6xl md:text-8xl font-serif font-light leading-[0.95] tracking-tight mb-10">

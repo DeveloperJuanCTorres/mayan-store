@@ -4,12 +4,12 @@
 
 <div class="min-h-screen bg-[#f8f6f2] text-[#1a1a1a]">
 
-    <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 py-16">
+    <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 py-48">
 
         <!-- HERO -->
         <header class="mb-24 max-w-4xl">
             <p class="uppercase tracking-[0.4em] text-[#c8a96b] text-xs mb-6">
-                Luxury Jewelry
+                Xuping
             </p>
 
             <h1 class="text-6xl md:text-8xl leading-[0.95] tracking-tight font-serif font-light mb-8">
