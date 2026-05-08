@@ -128,20 +128,36 @@
                 <div class="flex items-center gap-4 lg:gap-6">
 
                     <!-- SEARCH -->
-                    <button
-                        class="hidden md:flex w-12 h-12 rounded-full border border-[#ece7df] items-center justify-center hover:bg-[#c8a96b] hover:text-white hover:border-[#c8a96b] transition-all duration-500">
+                    <form action="{{ route('tienda') }}" method="GET"
+                        class="hidden md:flex items-center">
 
-                        <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                        <div class="flex items-center bg-white border border-[#ece7df] rounded-full overflow-hidden hover:border-[#c8a96b] transition-all duration-500">
 
-                    </button>
+                            <input
+                                type="text"
+                                name="search"
+                                value="{{ request('search') }}"
+                                placeholder="Buscar productos..."
+                                class="w-[220px] px-5 py-3 bg-transparent border-none outline-none focus:outline-none focus:ring-0 focus:border-none text-sm text-[#222] placeholder:text-[#999]">
+
+                            <button type="submit"
+                                class="w-12 h-12 flex items-center justify-center hover:bg-[#c8a96b] hover:text-white transition-all duration-500">
+
+                                <i class="fa-solid fa-magnifying-glass text-sm"></i>
+
+                            </button>
+
+                        </div>
+
+                    </form>
 
                     <!-- ACCOUNT -->
-                    <button
+                    <!-- <button
                         class="hidden md:flex w-12 h-12 rounded-full border border-[#ece7df] items-center justify-center hover:bg-[#c8a96b] hover:text-white hover:border-[#c8a96b] transition-all duration-500">
 
                         <i class="fa-regular fa-user text-sm"></i>
 
-                    </button>
+                    </button> -->
 
                     <!-- CART -->
                     <button

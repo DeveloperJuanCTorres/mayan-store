@@ -27,7 +27,19 @@
             <div class="w-24 h-[1px] bg-[#c8a96b] mt-10"></div>
         </header> -->
 
+
+        @if(request('search'))
+            <p class="mb-8 text-sm text-[#777]">
+                Resultados para:
+                <span class="font-semibold text-black">
+                    "{{ request('search') }}"
+                </span>
+            </p>
+        @endif
+        
         <div class="flex flex-col lg:flex-row gap-16">
+
+            
 
             <!-- SIDEBAR -->
             <!-- MOBILE FILTER BUTTON -->

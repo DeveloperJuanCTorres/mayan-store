@@ -49,6 +49,10 @@ class HomeController extends Controller
          $business = Company::find(1);
         $query = Product::with('brand', 'taxonomy');
 
+        if ($request->search) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
         if ($request->category) {
             $query->where('taxonomy_id', $request->category);
         }
