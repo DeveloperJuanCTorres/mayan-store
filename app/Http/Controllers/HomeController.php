@@ -226,7 +226,7 @@ class HomeController extends Controller
                 'fechafinal' => '2025-04-25T14:54:34.307Z'
             ]);
 
-            if ($response->successful()) {
+            if ($response->successful() == true) {
 
                 $body = json_decode($response->body());
 
