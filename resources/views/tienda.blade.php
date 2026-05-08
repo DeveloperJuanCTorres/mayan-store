@@ -104,7 +104,21 @@
                                 alt="{{ $product->name }}"
                             >
 
+                            <!-- overlay -->
                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-500"></div>
+
+                            <!-- button -->
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
+
+                                <button
+                                    onclick="openProductModal({{ $product->id }})"
+                                    class="bg-white text-black px-8 py-4 rounded-full uppercase tracking-[0.25em] text-xs shadow-2xl hover:bg-[#c8a96b] hover:text-white transition-all duration-500">
+
+                                    Ver Detalles
+
+                                </button>
+
+                            </div>
 
                         </div>
 
@@ -116,7 +130,7 @@
                                     Exclusivo
                                 </p>
 
-                                <h3 class="text-2xl font-serif leading-snug">
+                                <h3 class="text-md font-serif leading-snug">
                                     {{ $product->name }}
                                 </h3>
                             </div>
@@ -126,12 +140,12 @@
                             </p>
 
                             <button
-                                onclick="openProductModal({{ $product->id }})"
-                                class="w-full py-4 rounded-full border border-[#c8a96b] text-[#1a1a1a]
-                                hover:bg-[#c8a96b] hover:text-white
+                                onclick="quickAddToCart({{ $product->id }})"
+                                class="w-full py-4 rounded-full border border-[#c8a96b] bg-[#c8a96b] text-white
+                                hover:bg-[#c8a96b] hover:text-[#1a1a1a]
                                 transition-all duration-500 uppercase tracking-[0.25em] text-xs">
 
-                                Ver Detalles
+                                Agregar al carrito
 
                             </button>
 
@@ -555,6 +569,50 @@
             document.getElementById('cartCount').innerText = data.count;
 
             alert('Producto agregado correctamente');
+
+        }
+
+    }
+
+    async function quickAddToCart(productId) {
+
+        try {
+
+            const res = await fetch('/cart/add', {
+
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: 1
+                })
+
+            });
+
+            const data = await res.json();
+
+            if(data.success){
+
+                // actualizar contador
+                if(document.getElementById('cartCount')){
+
+                    document.getElementById('cartCount').innerText = data.count;
+
+                }
+
+                // abrir drawer automáticamente
+                openCart();
+
+            }
+
+        } catch(error){
+
+            console.error(error);
 
         }
 
