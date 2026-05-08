@@ -67,38 +67,58 @@
                 <div class="hidden lg:flex items-center gap-12">
 
                     <a href="{{ route('home') }}"
-                    class="relative text-[13px] uppercase tracking-[0.25em] text-[#444] hover:text-[#c8a96b] transition group">
+                    class="relative text-[13px] uppercase tracking-[0.25em] transition group
+                    {{ request()->routeIs('home') 
+                        ? 'text-[#c8a96b]' 
+                        : 'text-[#444] hover:text-[#c8a96b]' }}">
 
                         Inicio
 
-                        <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-[#c8a96b] transition-all duration-500 group-hover:w-full"></span>
+                        <span class="absolute -bottom-2 left-0 h-[1px] bg-[#c8a96b] transition-all duration-500
+                        {{ request()->routeIs('home') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                        </span>
 
                     </a>
 
                     <a href="{{ route('tienda') }}"
-                    class="relative text-[13px] uppercase tracking-[0.25em] text-[#444] hover:text-[#c8a96b] transition group">
+                    class="relative text-[13px] uppercase tracking-[0.25em] transition group
+                    {{ request()->routeIs('tienda') 
+                        ? 'text-[#c8a96b]' 
+                        : 'text-[#444] hover:text-[#c8a96b]' }}">
 
                         Tienda
 
-                        <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-[#c8a96b] transition-all duration-500 group-hover:w-full"></span>
+                        <span class="absolute -bottom-2 left-0 h-[1px] bg-[#c8a96b] transition-all duration-500
+                        {{ request()->routeIs('tienda') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                        </span>
 
                     </a>
 
                     <a href="{{ route('about') }}"
-                    class="relative text-[13px] uppercase tracking-[0.25em] text-[#444] hover:text-[#c8a96b] transition group">
+                    class="relative text-[13px] uppercase tracking-[0.25em] transition group
+                    {{ request()->routeIs('about') 
+                        ? 'text-[#c8a96b]' 
+                        : 'text-[#444] hover:text-[#c8a96b]' }}">
 
                         Nosotros
 
-                        <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-[#c8a96b] transition-all duration-500 group-hover:w-full"></span>
+                        <span class="absolute -bottom-2 left-0 h-[1px] bg-[#c8a96b] transition-all duration-500
+                        {{ request()->routeIs('about') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                        </span>
 
                     </a>
 
                     <a href="{{ route('contactanos') }}"
-                    class="relative text-[13px] uppercase tracking-[0.25em] text-[#444] hover:text-[#c8a96b] transition group">
+                    class="relative text-[13px] uppercase tracking-[0.25em] transition group
+                    {{ request()->routeIs('contactanos') 
+                        ? 'text-[#c8a96b]' 
+                        : 'text-[#444] hover:text-[#c8a96b]' }}">
 
                         Contacto
 
-                        <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-[#c8a96b] transition-all duration-500 group-hover:w-full"></span>
+                        <span class="absolute -bottom-2 left-0 h-[1px] bg-[#c8a96b] transition-all duration-500
+                        {{ request()->routeIs('contactanos') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                        </span>
 
                     </a>
 
@@ -160,7 +180,7 @@
 
 <!-- MOBILE MENU -->
 <div id="mobileMenu"
-    class="fixed inset-0 z-[999] hidden">
+    class="fixed inset-0 z-[99999] hidden">
 
     <!-- OVERLAY -->
     <div id="mobileOverlay"
@@ -168,7 +188,7 @@
 
     <!-- PANEL -->
     <div id="mobilePanel"
-        class="absolute top-0 right-0 w-[320px] max-w-full h-full bg-white shadow-2xl translate-x-full transition-transform duration-500 flex flex-col">
+        class="absolute top-0 right-0 w-[320px] max-w-full h-full bg-white shadow-2xl translate-x-full transition-transform duration-500 flex flex-col z-[100000]">
 
         <!-- HEADER -->
         <div class="h-24 px-6 border-b border-[#eee] flex items-center justify-between">
@@ -200,7 +220,10 @@
             <div class="space-y-2">
 
                 <a href="{{ route('home') }}"
-                class="flex items-center justify-between px-5 py-5 rounded-2xl bg-[#faf7f2] hover:bg-[#c8a96b] hover:text-white transition-all duration-500 group">
+                    class="flex items-center justify-between px-5 py-5 rounded-2xl transition-all duration-500 group
+                    {{ request()->routeIs('home')
+                        ? 'bg-[#c8a96b] text-white'
+                        : 'bg-[#faf7f2] hover:bg-[#c8a96b] hover:text-white' }}">
 
                     <div class="flex items-center gap-4">
 
@@ -217,7 +240,10 @@
                 </a>
 
                 <a href="{{ route('tienda') }}"
-                class="flex items-center justify-between px-5 py-5 rounded-2xl bg-[#faf7f2] hover:bg-[#c8a96b] hover:text-white transition-all duration-500 group">
+                class="flex items-center justify-between px-5 py-5 rounded-2xl transition-all duration-500 group
+                    {{ request()->routeIs('tienda')
+                        ? 'bg-[#c8a96b] text-white'
+                        : 'bg-[#faf7f2] hover:bg-[#c8a96b] hover:text-white' }}">
 
                     <div class="flex items-center gap-4">
 
@@ -234,7 +260,10 @@
                 </a>
 
                 <a href="{{ route('about') }}"
-                class="flex items-center justify-between px-5 py-5 rounded-2xl bg-[#faf7f2] hover:bg-[#c8a96b] hover:text-white transition-all duration-500 group">
+                class="flex items-center justify-between px-5 py-5 rounded-2xl transition-all duration-500 group
+                    {{ request()->routeIs('about')
+                        ? 'bg-[#c8a96b] text-white'
+                        : 'bg-[#faf7f2] hover:bg-[#c8a96b] hover:text-white' }}">
 
                     <div class="flex items-center gap-4">
 
@@ -251,7 +280,10 @@
                 </a>
 
                 <a href="{{ route('contactanos') }}"
-                class="flex items-center justify-between px-5 py-5 rounded-2xl bg-[#faf7f2] hover:bg-[#c8a96b] hover:text-white transition-all duration-500 group">
+                class="flex items-center justify-between px-5 py-5 rounded-2xl transition-all duration-500 group
+                    {{ request()->routeIs('contactanos')
+                        ? 'bg-[#c8a96b] text-white'
+                        : 'bg-[#faf7f2] hover:bg-[#c8a96b] hover:text-white' }}">
 
                     <div class="flex items-center gap-4">
 
@@ -360,39 +392,51 @@
 
 <script>
 
-    // MOBILE MENU
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobilePanel = document.getElementById('mobilePanel');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileOverlay = document.getElementById('mobileOverlay');
+    document.addEventListener('DOMContentLoaded', () => {
 
-    menuBtn.addEventListener('click', () => {
+        // MOBILE MENU
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobilePanel = document.getElementById('mobilePanel');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
 
-        mobileMenu.classList.remove('hidden');
+        if(menuBtn){
 
-        setTimeout(() => {
+            menuBtn.addEventListener('click', () => {
 
-            mobilePanel.classList.remove('translate-x-full');
+                mobileMenu.classList.remove('hidden');
 
-        }, 10);
+                setTimeout(() => {
+
+                    mobilePanel.classList.remove('translate-x-full');
+
+                }, 10);
+
+            });
+
+        }
+
+        function closeMobileMenu() {
+
+            mobilePanel.classList.add('translate-x-full');
+
+            setTimeout(() => {
+
+                mobileMenu.classList.add('hidden');
+
+            }, 300);
+
+        }
+
+        if(closeMenu){
+            closeMenu.addEventListener('click', closeMobileMenu);
+        }
+
+        if(mobileOverlay){
+            mobileOverlay.addEventListener('click', closeMobileMenu);
+        }
 
     });
-
-    function closeMobileMenu() {
-
-        mobilePanel.classList.add('translate-x-full');
-
-        setTimeout(() => {
-
-            mobileMenu.classList.add('hidden');
-
-        }, 300);
-
-    }
-
-    closeMenu.addEventListener('click', closeMobileMenu);
-
-    mobileOverlay.addEventListener('click', closeMobileMenu);
 
 </script>

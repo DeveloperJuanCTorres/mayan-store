@@ -294,7 +294,7 @@
                                 alt="Producto">
 
                             <div class="absolute top-6 left-6 px-5 py-2 rounded-full bg-white/80 backdrop-blur-xl text-[10px] tracking-[0.3em] uppercase">
-                                Luxury Jewelry
+                                Xuping
                             </div>
 
                         </div>
