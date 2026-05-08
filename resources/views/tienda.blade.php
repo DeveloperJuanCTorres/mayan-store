@@ -36,7 +36,7 @@
                 </span>
             </p>
         @endif
-        
+
         <div class="flex flex-col lg:flex-row gap-16">
 
             
@@ -171,7 +171,7 @@
 
                 <!-- PAGINATION -->
                 <div class="mt-24">
-                    {{ $products->links() }}
+                    {{ $products->links('vendor.pagination.luxury') }}
                 </div>
 
             </section>
