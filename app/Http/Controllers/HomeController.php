@@ -271,7 +271,7 @@ class HomeController extends Controller
 
                 return response()->json([
                     'status' => false,
-                    'msg' => 'Algo salió mal'
+                    'msg' => 'Algo salió mal' . $response->body()
                 ]);
             }
 
