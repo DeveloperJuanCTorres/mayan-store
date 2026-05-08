@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Company;
 use App\Models\Link;
@@ -38,8 +39,9 @@ class HomeController extends Controller
     public function home()
     {
         $business = Company::find(1);
+        $banners = Banner::all();
         $products_destacados = Product::take(6)->get();
-        return view('home', compact('business', 'products_destacados'));
+        return view('home', compact('business', 'banners', 'products_destacados'));
     }
 
     public function tienda(Request $request)

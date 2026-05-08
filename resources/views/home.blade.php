@@ -4,54 +4,89 @@
 
 <div class="bg-[#f8f6f2] text-[#1a1a1a] overflow-hidden">
 
-    <!-- HERO -->
-    <section class="relative min-h-screen flex items-center">
+    <!-- HERO CAROUSEL -->
+    <section class="relative overflow-hidden h-[250px] md:h-[320px] lg:h-[420px] xl:h-[450px]">
 
-        <!-- BG -->
-        <div class="absolute inset-0">
+        <!-- SLIDES -->
+        <div id="heroSlider" class="relative w-full h-full">
 
-            <img
-                class="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKBCHO2sJ4dpOmSSx_Hu_qSR10GTELqh7uJ4yy8g5uYTvK0zizK2FDaq_lH-XrQuEQqU7j299tYanYrVlSfMk8ACWSV68qVSHO0Ig6Xybc0Mikyla5_eTKWYsrMmH51oTaPAX_iBTNcPqNKgwwYtOQUz3m62wTfqWDHC_JcX_1_aDbCW0-x6Q36atQg3WD7vC2ozl2K5q4Qk0xBmgqv6zqEaYklDx0ypzK9pqW_N7DM2Wh7DVOpxbvOUJeW7PFjYcY1yD16ljpYHqX"
-                alt="Hero">
+            <!-- SLIDE 1 -->
+             @foreach($banners as $banner)
 
-            <div class="absolute inset-0 bg-black/45"></div>
+            <div class="hero-slide absolute inset-0 opacity-100 transition-all duration-1000 z-10 overflow-hidden">
+
+                <!-- IMAGE -->
+                <img
+                    class="absolute inset-0 w-full h-full object-cover object-center"
+                    src="{{ asset('storage/' . $banner->image) }}"
+                    alt="Banner">
+
+                <!-- OVERLAY -->
+                <!-- <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/60"></div> -->
+
+                <!-- CONTENT -->
+                <div class="absolute inset-0 flex items-end pb-10 md:pb-14 lg:pb-20">
+
+                    <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 w-full">
+
+                        <div class="max-w-3xl">
+
+                            <a href="{{ route('tienda') }}"
+                            class="inline-flex items-center gap-4 bg-white text-black px-10 py-5 rounded-full uppercase tracking-[0.25em] text-xs font-semibold hover:bg-[#d4b178] hover:text-white transition-all duration-500">
+
+                                Explorar Colección
+
+                                <span class="material-symbols-outlined text-sm">
+                                    arrow_forward
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            @endforeach
 
         </div>
 
-        <!-- CONTENT -->
-        <div class="relative z-10 max-w-screen-2xl mx-auto px-6 lg:px-10 w-full">
+        <!-- BUTTONS -->
+        <button onclick="prevSlide()"
+            class="absolute left-6 lg:left-10 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-[#d4b178] transition-all duration-500 flex items-center justify-center">
 
-            <div class="max-w-3xl">
+            <span class="material-symbols-outlined">
+                west
+            </span>
 
-                <p class="uppercase tracking-[0.45em] text-[#d4b178] text-xs mb-8">
-                    Luxury Jewelry Collection
-                </p>
+        </button>
 
-                <h1 class="text-6xl md:text-8xl font-serif leading-[0.9] text-white font-light mb-10">
-                    Eternal <br>
-                    <span class="italic text-[#d4b178]">
-                        Elegance
-                    </span>
-                </h1>
+        <button onclick="nextSlide()"
+            class="absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-[#d4b178] transition-all duration-500 flex items-center justify-center">
 
-                <p class="text-white/80 text-lg leading-relaxed max-w-2xl mb-12">
-                    Piezas exclusivas inspiradas en la precisión ancestral y diseñadas para quienes entienden
-                    el verdadero significado del lujo.
-                </p>
+            <span class="material-symbols-outlined">
+                east
+            </span>
 
-                <a href="{{ route('tienda') }}"
-                   class="inline-flex items-center gap-4 bg-white text-black px-10 py-5 rounded-full uppercase tracking-[0.25em] text-xs font-semibold hover:bg-[#d4b178] hover:text-white transition-all duration-500">
+        </button>
 
-                    Explorar Colección
+        <!-- INDICATORS -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex items-center gap-4">
 
-                    <span class="material-symbols-outlined text-sm">
-                        arrow_forward
-                    </span>
+            <button onclick="goToSlide(0)"
+                class="indicator w-10 h-[2px] bg-white transition-all duration-500">
+            </button>
 
-                </a>
+            <button onclick="goToSlide(1)"
+                class="indicator w-10 h-[2px] bg-white/40 transition-all duration-500">
+            </button>
 
-            </div>
+            <button onclick="goToSlide(2)"
+                class="indicator w-10 h-[2px] bg-white/40 transition-all duration-500">
+            </button>
 
         </div>
 
@@ -549,6 +584,78 @@
         }
 
     }
+
+</script>
+
+<script>
+
+    const slides = document.querySelectorAll('.hero-slide');
+    const indicators = document.querySelectorAll('.indicator');
+
+    let currentSlide = 0;
+
+    function showSlide(index) {
+
+        slides.forEach((slide, i) => {
+
+            slide.classList.remove('opacity-100', 'z-10');
+            slide.classList.add('opacity-0');
+
+            indicators[i].classList.remove('bg-white');
+            indicators[i].classList.add('bg-white/40');
+
+        });
+
+        slides[index].classList.remove('opacity-0');
+        slides[index].classList.add('opacity-100', 'z-10');
+
+        indicators[index].classList.remove('bg-white/40');
+        indicators[index].classList.add('bg-white');
+
+    }
+
+    function nextSlide() {
+
+        currentSlide++;
+
+        if(currentSlide >= slides.length){
+
+            currentSlide = 0;
+
+        }
+
+        showSlide(currentSlide);
+
+    }
+
+    function prevSlide() {
+
+        currentSlide--;
+
+        if(currentSlide < 0){
+
+            currentSlide = slides.length - 1;
+
+        }
+
+        showSlide(currentSlide);
+
+    }
+
+    function goToSlide(index) {
+
+        currentSlide = index;
+
+        showSlide(currentSlide);
+
+    }
+
+    // AUTO PLAY
+    setInterval(() => {
+
+        nextSlide();
+
+    }, 6000);
 
 </script>
 
