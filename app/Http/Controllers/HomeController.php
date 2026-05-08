@@ -211,7 +211,7 @@ class HomeController extends Controller
 
             $ruta = "https://devpedido.vesercloud.com/api/Inventario/ProductosWeb";
 
-            $token = "TU_TOKEN";
+            $token = "10778176381.6f1f3ad904add12c219720fe07e50c201c7f54bd4db1bf271d2eaad610583e3e9596086c1b22f8571b01439f1ad00f3af96cf2dcf5b6217e306c25ae4e338e84";
 
             $response = Http::withToken($token)->post($ruta, [
                 "ruc_empresa" => $business->ruc,
