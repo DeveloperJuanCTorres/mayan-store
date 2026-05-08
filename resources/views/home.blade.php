@@ -31,8 +31,7 @@
 
                         <div class="max-w-3xl">
 
-                            <!-- DESCRIPTION -->
-                            <p class="text-[#1f1f1f] text-lg md:text-3xl leading-[1.8] tracking-[0.01em] max-w-2xl mb-10 font-medium drop-shadow-[0_1px_2px_rgba(255,255,255,0.35)]"
+                            <p class="text-[#111111] text-lg md:text-3xl leading-[1.8] tracking-[0.01em] max-w-2xl mb-10 font-bold drop-shadow-[0_2px_4px_rgba(255,255,255,0.45)]"
                             style="font-family: 'Cormorant Garamond', serif;">
                                 
                                 {{$banner->descripcion}}
