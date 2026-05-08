@@ -38,27 +38,51 @@ async function loadCart() {
     }
 
     items.forEach(item => {
-        let image = fallbackImage;
-        try {
-            if (item.images) {
-                const images = JSON.parse(item.images);
 
-                if (images.length > 0) {
-                    image = images[0];
-                }
+        let image = '/images/product-default.png';
+
+        let images = [];
+
+        try {
+
+            // si viene como string JSON
+            if (typeof item.image === 'string') {
+
+                images = JSON.parse(item.image);
+
+            }
+            // si ya viene como array
+            else if (Array.isArray(item.image)) {
+
+                images = item.image;
+
+            }
+
+            if (
+                images.length > 0 &&
+                images[0].url_imagen
+            ) {
+
+                image = images[0].url_imagen;
+
             }
 
         } catch (e) {
+
             console.error('Error cargando imágenes', e);
+
         }
 
         container.innerHTML += `
+
             <div class="flex gap-4 border-b border-[#eee] pb-5">
+
                 <img
                     src="${image}"
                     class="w-20 h-20 object-cover rounded-2xl bg-[#f5f5f5] border border-[#eee]">
 
                 <div class="flex-1">
+
                     <h4 class="text-sm font-semibold text-[#1a1a1a] leading-snug">
                         ${item.name}
                     </h4>
@@ -80,10 +104,13 @@ async function loadCart() {
                     <i class="fa-solid fa-trash text-sm"></i>
 
                 </button>
+
             </div>
+
         `;
 
     });
+
     document.getElementById('cartTotal').innerText = 'S/. ' + data.total;
 }
 
