@@ -7,7 +7,7 @@
     <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 py-48">
 
         <!-- HERO -->
-        <header class="mb-24 max-w-4xl">
+        <!-- <header class="mb-24 max-w-4xl">
             <p class="uppercase tracking-[0.4em] text-[#c8a96b] text-xs mb-6">
                 Xuping
             </p>
@@ -25,7 +25,7 @@
             </p>
 
             <div class="w-24 h-[1px] bg-[#c8a96b] mt-10"></div>
-        </header>
+        </header> -->
 
         <div class="flex flex-col lg:flex-row gap-16">
 
