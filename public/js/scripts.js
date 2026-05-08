@@ -38,24 +38,52 @@ async function loadCart() {
     }
 
     items.forEach(item => {
+        let image = fallbackImage;
+        try {
+            if (item.images) {
+                const images = JSON.parse(item.images);
+
+                if (images.length > 0) {
+                    image = images[0];
+                }
+            }
+
+        } catch (e) {
+            console.error('Error cargando imágenes', e);
+        }
+
         container.innerHTML += `
-            <div class="flex gap-4 border-b pb-4">
-                <img src="${item.image ? '/storage/' + item.image : '/img/no-image.png'}"
-                     class="w-16 h-16 object-cover rounded">
+            <div class="flex gap-4 border-b border-[#eee] pb-5">
+                <img
+                    src="${image}"
+                    class="w-20 h-20 object-cover rounded-2xl bg-[#f5f5f5] border border-[#eee]">
 
                 <div class="flex-1">
-                    <h4 class="text-sm font-bold">${item.name}</h4>
-                    <p class="text-xs text-gray-500">Cantidad: ${item.qty}</p>
-                    <p class="text-sm font-semibold">S/. ${item.price}</p>
+                    <h4 class="text-sm font-semibold text-[#1a1a1a] leading-snug">
+                        ${item.name}
+                    </h4>
+
+                    <p class="text-xs text-[#777] mt-2 uppercase tracking-[0.15em]">
+                        Cantidad: ${item.qty}
+                    </p>
+
+                    <p class="text-base font-semibold text-[#c8a96b] mt-3">
+                        S/. ${parseFloat(item.price).toFixed(2)}
+                    </p>
+
                 </div>
 
-                <button onclick="removeItem('${item.rowId}')" class="text-red-500">
-                    <i class="fa-solid fa-trash"></i>
+                <button
+                    onclick="removeItem('${item.rowId}')"
+                    class="w-10 h-10 rounded-full border border-[#eee] flex items-center justify-center hover:bg-red-500 hover:text-white transition-all duration-300">
+
+                    <i class="fa-solid fa-trash text-sm"></i>
+
                 </button>
             </div>
         `;
-    });
 
+    });
     document.getElementById('cartTotal').innerText = 'S/. ' + data.total;
 }
 
