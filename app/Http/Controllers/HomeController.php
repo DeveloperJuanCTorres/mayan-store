@@ -40,7 +40,7 @@ class HomeController extends Controller
     {
         $business = Company::find(1);
         $banners = Banner::all();
-        $products_destacados = Product::take(6)->get();
+        $products_destacados = Product::where('destacado', 1)->take(6)->get();
         return view('home', compact('business', 'banners', 'products_destacados'));
     }
 

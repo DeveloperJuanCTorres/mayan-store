@@ -99,6 +99,7 @@
     </section>
 
     <!-- FEATURED -->
+     @if($products_destacados->count() > 0)
     <section class="max-w-screen-2xl mx-auto px-6 lg:px-10 py-32">
 
         <!-- TOP -->
@@ -107,7 +108,7 @@
             <div>
 
                 <p class="uppercase tracking-[0.35em] text-[#c8a96b] text-xs mb-5">
-                    Curated Selection
+                    Productos destacados
                 </p>
 
                 <h2 class="text-5xl lg:text-6xl font-serif font-light leading-tight">
@@ -213,6 +214,7 @@
         </div>
 
     </section>
+    @endif
 
     <!-- BRAND SECTION -->
     <section class="py-32 bg-white">
