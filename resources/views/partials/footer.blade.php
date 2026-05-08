@@ -15,14 +15,9 @@
             <!-- BRAND -->
             <div>
 
-                <h2 class="text-3xl font-serif font-light mb-8 leading-tight">
-                    Luxury <br>
-
-                    <span class="italic text-[#c8a96b]">
-                        Jewelry
-                    </span>
-
-                </h2>
+                <img
+                    src="{{ asset('storage/' . $business->image) }}"
+                    class="h-20 w-auto transition duration-500 group-hover:scale-105">
 
                 <p class="text-white/60 leading-relaxed text-sm mb-8">
                     Creamos piezas exclusivas inspiradas en la elegancia atemporal,
