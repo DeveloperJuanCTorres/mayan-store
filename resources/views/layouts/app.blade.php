@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <?php
-    $version = '1993.4.7';
+    $version = '1993.4.8';
     ?>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>

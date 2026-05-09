@@ -2,35 +2,44 @@
 <header class="fixed top-0 left-0 w-full z-50">
 
     <!-- TOP BAR -->
-    <div class="bg-[#111111] text-white text-[11px] tracking-[0.25em] uppercase hidden lg:block">
+    <div class="bg-[#111111] text-white text-[11px] tracking-[0.25em] uppercase hidden lg:block overflow-hidden">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 h-10 flex items-center justify-between gap-10">
 
-        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 h-10 flex items-center justify-between">
+            <div class="flex items-center gap-8 flex-1">
 
-            <div class="flex items-center gap-8">
-
-                <div class="flex items-center gap-2 text-white/70">
+                <div class="flex items-center gap-2 text-white/70 shrink-0">
                     <i class="fa-solid fa-location-dot text-[#c8a96b]"></i>
                     <span>Lima, Perú</span>
                 </div>
 
-                <div class="flex items-center gap-2 text-white/70">
-                    <i class="fa-solid fa-truck-fast text-[#c8a96b]"></i>
-                    <span>Envíos Premium a todo el Perú</span>
+                <!-- TEXTO EN MOVIMIENTO -->
+                <div class="relative flex-1 overflow-hidden">
+
+                    <div class="animate-marquee whitespace-nowrap flex items-center gap-2 text-white/70 w-max">
+
+                        <i class="fa-solid fa-truck-fast text-[#c8a96b]"></i>
+
+                        <span>
+                            Envíos Premium a todo el Perú
+                        </span>
+
+                    </div>
+
                 </div>
 
             </div>
 
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-6 shrink-0">
 
-                <a href="#" class="hover:text-[#c8a96b] transition">
+                <a href="{{$business->link_instagram}}" target="_blank" class="hover:text-[#c8a96b] transition">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
 
-                <a href="#" class="hover:text-[#c8a96b] transition">
+                <a href="{{$business->link_facebook}}" target="_blank" class="hover:text-[#c8a96b] transition">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
 
-                <a href="#" class="hover:text-[#c8a96b] transition">
+                <a href="{{$business->link_tiktok}}" target="_blank" class="hover:text-[#c8a96b] transition">
                     <i class="fa-brands fa-tiktok"></i>
                 </a>
 

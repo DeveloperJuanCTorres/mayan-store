@@ -20,40 +20,46 @@
                     class="h-20 w-auto transition duration-500 group-hover:scale-105">
 
                 <p class="text-white/60 leading-relaxed text-sm mb-8">
-                    Creamos piezas exclusivas inspiradas en la elegancia atemporal,
-                    combinando lujo contemporáneo con detalles artesanales únicos.
-                </p>
+                    {!!$business->description!!}
+                </p><br>
 
                 <!-- SOCIAL -->
                 <div class="flex items-center gap-4">
-
-                    <a href="#"
+                    @if($business->link_facebook)
+                    <a href="{{$business->link_facebook}}" target="_blank"
                     class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#c8a96b] hover:border-[#c8a96b] transition-all duration-500">
 
                         <i class="fab fa-facebook-f"></i>
 
                     </a>
+                    @endif
 
-                    <a href="#"
+                    @if($business->link_instagram)
+                    <a href="{{$business->link_instagram}}" target="_blank"
                     class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#c8a96b] hover:border-[#c8a96b] transition-all duration-500">
 
                         <i class="fab fa-instagram"></i>
 
                     </a>
+                    @endif
 
-                    <a href="#"
+                    @if($business->link_tiktok)
+                    <a href="{{$business->link_tiktok}}" target="_blank"
                     class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#c8a96b] hover:border-[#c8a96b] transition-all duration-500">
 
                         <i class="fab fa-tiktok"></i>
 
                     </a>
+                    @endif
 
-                    <a href="#"
+                    @if($business->link_youtube)
+                    <a href="{{$business->link_youtube}}" target="_blank"
                     class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#c8a96b] hover:border-[#c8a96b] transition-all duration-500">
 
                         <i class="fab fa-youtube"></i>
 
                     </a>
+                    @endif
 
                 </div>
 
@@ -140,7 +146,7 @@
                             </p>
 
                             <p>
-                                +51 999 999 999
+                                +51 {{$business->phone}}
                             </p>
 
                         </div>
@@ -162,7 +168,7 @@
                             </p>
 
                             <p>
-                                contacto@luxuryjewelry.com
+                                {{ $business->email }}
                             </p>
 
                         </div>
@@ -235,7 +241,7 @@
         <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 py-8 flex flex-col lg:flex-row items-center justify-between gap-6">
 
             <p class="text-white/40 text-xs tracking-[0.2em] uppercase text-center lg:text-left">
-                © 2026 Luxury Jewelry · Todos los derechos reservados
+                © 2026 {{$business->name}} · Todos los derechos reservados
             </p>
 
             <div class="flex items-center gap-8 text-xs uppercase tracking-[0.2em] text-white/40">
