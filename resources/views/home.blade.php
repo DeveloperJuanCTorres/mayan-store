@@ -271,7 +271,7 @@
         </div>
 
     </section> -->
-
+    @if($favoritos)
     <section class="py-32 bg-white">
         <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-20 items-center">
 
@@ -281,6 +281,7 @@
                 <div class="relative overflow-hidden rounded-[40px] group">
 
                     <!-- Slides -->
+                     
                     <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
 
                    
@@ -293,7 +294,7 @@
                             src="{{ asset('storage/' . $image) }}"
                             alt="Luxury 1">
                         @endforeach
-                    </div>
+                    </div>                    
 
                     <!-- Overlay -->
                     <div class="absolute inset-0 bg-black/10"></div>
@@ -353,6 +354,7 @@
         </div>
 
     </section>
+    @endif
 
     <!-- MODAL -->
     <div id="productModal"
