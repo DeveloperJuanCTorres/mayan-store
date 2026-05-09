@@ -217,11 +217,11 @@
     @endif
 
     <!-- BRAND SECTION -->
-    <section class="py-32 bg-white">
+    <!-- <section class="py-32 bg-white">
 
         <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-20 items-center">
 
-            <!-- IMAGE -->
+           
             <div class="relative">
 
                 <div class="overflow-hidden rounded-[40px]">
@@ -237,11 +237,93 @@
 
             </div>
 
+           
+            <div>
+
+                <p class="uppercase tracking-[0.35em] text-[#c8a96b] text-xs mb-6">
+                    Xuping
+                </p>
+
+                <h2 class="text-5xl lg:text-7xl font-serif font-light leading-tight mb-10">
+
+                    Preserving <br>
+
+                    <span class="italic text-[#c8a96b]">
+                        Legacy
+                    </span>
+
+                </h2>
+
+                <p class="text-[#666] text-lg leading-relaxed mb-10">
+                    Cada joya representa un equilibrio entre arte, historia y sofisticación moderna.
+                    Creamos piezas atemporales para quienes buscan exclusividad auténtica.
+                </p>
+
+                <button
+                    class="px-10 py-5 bg-[#1a1a1a] text-white rounded-full uppercase tracking-[0.25em] text-xs hover:bg-[#c8a96b] transition-all duration-500">
+
+                    Descubrir Más
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section> -->
+
+    <section class="py-32 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-20 items-center">
+
+            <!-- CAROUSEL -->
+            <div class="relative">
+
+                <div class="relative overflow-hidden rounded-[40px] group">
+
+                    <!-- Slides -->
+                    <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
+
+                   
+                        @php
+                            $imagenes_favorito = json_decode($favoritos->images, true);
+                        @endphp
+                        @foreach($imagenes_favorito as $image)
+                        <img
+                            class="w-full h-[600px] object-cover flex-shrink-0"
+                            src="{{ asset('storage/' . $image) }}"
+                            alt="Luxury 1">
+                        @endforeach
+                    </div>
+
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-black/10"></div>
+
+                    <!-- Buttons -->
+                    <button id="prev"
+                        class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/80 backdrop-blur flex items-center justify-center hover:bg-white transition">
+
+                        ❮
+
+                    </button>
+
+                    <button id="next"
+                        class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/80 backdrop-blur flex items-center justify-center hover:bg-white transition">
+
+                        ❯
+
+                    </button>
+
+                </div>
+
+                <div class="absolute -bottom-10 -right-10 w-64 h-64 rounded-full bg-[#c8a96b]/10 blur-3xl"></div>
+
+            </div>
+
             <!-- TEXT -->
             <div>
 
                 <p class="uppercase tracking-[0.35em] text-[#c8a96b] text-xs mb-6">
-                    The Atelier
+                    Xuping
                 </p>
 
                 <h2 class="text-5xl lg:text-7xl font-serif font-light leading-tight mb-10">
@@ -380,6 +462,33 @@
 
 </div>
 
+
+<script>
+    const carousel = document.getElementById('carousel');
+    const slides = carousel.children;
+
+    let index = 0;
+
+    function updateCarousel() {
+        carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    document.getElementById('next').addEventListener('click', () => {
+        index = (index + 1) % slides.length;
+        updateCarousel();
+    });
+
+    document.getElementById('prev').addEventListener('click', () => {
+        index = (index - 1 + slides.length) % slides.length;
+        updateCarousel();
+    });
+
+    // autoplay
+    setInterval(() => {
+        index = (index + 1) % slides.length;
+        updateCarousel();
+    }, 5000);
+</script>
 
 <script>
     const fallbackImage = @json(asset('images/product-default.png'));

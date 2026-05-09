@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Company;
+use App\Models\Favorite;
 use App\Models\Link;
 use App\Models\Page;
 use App\Models\Product;
@@ -41,8 +42,9 @@ class HomeController extends Controller
     {
         $business = Company::find(1);
         $banners = Banner::all();
+        $favoritos = Favorite::first();
         $products_destacados = Product::where('destacado', 1)->take(8)->get();
-        return view('home', compact('business', 'banners', 'products_destacados'));
+        return view('home', compact('business', 'banners', 'products_destacados', 'favoritos'));
     }
 
     public function tienda(Request $request)
