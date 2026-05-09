@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Company;
 use App\Models\Link;
+use App\Models\Page;
 use App\Models\Product;
 use App\Models\Taxonomy;
 use Illuminate\Http\Request;
@@ -80,7 +81,8 @@ class HomeController extends Controller
     public function about()
     {
         $business = Company::find(1);
-        return view('about', compact('business'));
+        $nosotros = Page::where('slug', 'nosotros')->first();
+        return view('about', compact('business', 'nosotros'));
     }
 
     public function contactanos()

@@ -12,7 +12,7 @@
 
             <img
                 class="w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=2070&auto=format&fit=crop"
+                src="{{asset ('storage/' . $nosotros->image) }}"
                 alt="Joyería de lujo">
 
             <div class="absolute inset-0 bg-black/55"></div>
