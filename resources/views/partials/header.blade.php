@@ -235,6 +235,30 @@
 
             <div class="space-y-2">
 
+                <!-- SEARCH -->
+                <form action="{{ route('tienda') }}" method="GET"
+                    class="md:flex items-center">
+
+                    <div class="flex items-center bg-white border border-[#ece7df] rounded-full overflow-hidden hover:border-[#c8a96b] transition-all duration-500">
+
+                        <input
+                            type="text"
+                            name="search"
+                            value="{{ request('search') }}"
+                            placeholder="Buscar productos..."
+                            class="w-[220px] px-5 py-3 bg-transparent border-none outline-none focus:outline-none focus:ring-0 focus:border-none text-sm text-[#222] placeholder:text-[#999]">
+
+                        <button type="submit"
+                            class="w-12 h-12 flex items-center justify-center hover:bg-[#c8a96b] hover:text-white transition-all duration-500">
+
+                            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+
+                        </button>
+
+                    </div>
+
+                </form>
+
                 <a href="{{ route('home') }}"
                     class="flex items-center justify-between px-5 py-5 rounded-2xl transition-all duration-500 group
                     {{ request()->routeIs('home')
