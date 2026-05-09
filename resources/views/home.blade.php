@@ -329,25 +329,24 @@
 
                 <h2 class="text-5xl lg:text-7xl font-serif font-light leading-tight mb-10">
 
-                    Preserving <br>
+                    {{$favoritos->titulo}} <br>
 
                     <span class="italic text-[#c8a96b]">
-                        Legacy
+                        {{$favoritos->subtitulo}}
                     </span>
 
                 </h2>
 
                 <p class="text-[#666] text-lg leading-relaxed mb-10">
-                    Cada joya representa un equilibrio entre arte, historia y sofisticación moderna.
-                    Creamos piezas atemporales para quienes buscan exclusividad auténtica.
+                    {{$favoritos->descripcion}}
                 </p>
 
-                <button
-                    class="px-10 py-5 bg-[#1a1a1a] text-white rounded-full uppercase tracking-[0.25em] text-xs hover:bg-[#c8a96b] transition-all duration-500">
+                <a href="{{ route('tienda') }}"
+                class="inline-block px-10 py-5 bg-[#1a1a1a] text-white rounded-full uppercase tracking-[0.25em] text-xs hover:bg-[#c8a96b] transition-all duration-500">
 
                     Descubrir Más
 
-                </button>
+                </a>
 
             </div>
 
