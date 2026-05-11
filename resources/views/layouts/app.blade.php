@@ -18,6 +18,16 @@
     $version = '1993.4.8';
     ?>
 
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logos/16x16.png') }}?v=<?php echo $version ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('logos/32x32.png') }}?v=<?php echo $version ?>">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('logos/48x48.png') }}?v=<?php echo $version ?>">
+    <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('logos/64x64.png') }}?v=<?php echo $version ?>">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('logos/96x96.png') }}?v=<?php echo $version ?>">
+    <link rel="icon" type="image/png" sizes="128x128" href="{{ asset('logos/128x128.png') }}?v=<?php echo $version ?>">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('logos/192x192.png') }}?v=<?php echo $version ?>">
+    <link rel="icon" type="image/png" sizes="256x256" href="{{ asset('logos/256x256.png') }}?v=<?php echo $version ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('logos/180x180.png') }}?v=<?php echo $version ?>">
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
