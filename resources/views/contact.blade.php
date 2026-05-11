@@ -173,10 +173,6 @@
                     <!-- CARD -->
                     <div class="bg-white rounded-[40px] p-10 border border-[#eee] shadow-sm">
 
-                        <p class="uppercase tracking-[0.35em] text-[#c8a96b] text-xs mb-8">
-                            Concierge
-                        </p>
-
                         <div class="space-y-10">
 
                             <!-- PHONE -->
@@ -188,7 +184,7 @@
 
                                 <a href="#"
                                    class="text-2xl font-light hover:text-[#c8a96b] transition">
-                                    +51 999 999 999
+                                    +51 {{$business->phone}}
                                 </a>
 
                             </div>
@@ -202,7 +198,7 @@
 
                                 <a href="#"
                                    class="text-xl font-light hover:text-[#c8a96b] transition break-all">
-                                    atelier@luxuryjewelry.com
+                                    {{$business->email}}
                                 </a>
 
                             </div>
@@ -218,12 +214,12 @@
 
                                     <div class="flex justify-between border-b border-[#eee] pb-3">
                                         <span>Lunes — Viernes</span>
-                                        <span>10:00 — 19:00</span>
+                                        <span>10:00 — 20:00</span>
                                     </div>
 
                                     <div class="flex justify-between border-b border-[#eee] pb-3">
                                         <span>Sábado</span>
-                                        <span>11:00 — 17:00</span>
+                                        <span>10:00 — 20:00</span>
                                     </div>
 
                                     <div class="flex justify-between">
@@ -257,7 +253,7 @@
                             <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-2xl">
 
                                 <p class="uppercase tracking-[0.25em] text-[#c8a96b] text-[10px] mb-3">
-                                    Luxury Atelier
+                                    {{$business->name}}
                                 </p>
 
                                 <h3 class="text-2xl font-serif mb-2">

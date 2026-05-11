@@ -7,12 +7,12 @@
 <div class="min-h-screen bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.15),transparent_40%),linear-gradient(135deg,#fafaf9,#d6d3d1)]">
     <div class="flex-grow flex flex-col items-center justify-center px-gutter pt-12 pb-20 max-w-2xl mx-auto w-full">
         <!-- Hero Visual (Subtle Image) -->
-        <div class="w-48 h-48 mb-8 rounded-full overflow-hidden border border-neutral-200">
+        <div class="mb-8 overflow-hidden border border-neutral-200">
             <img class="w-full h-full object-cover" 
                 src="{{asset('storage/' . $business->image)}}" />
         </div>
         <div class="text-center mb-8 space-y-4">
-            <p class="font-label-caps text-label-caps text-on-surface-variant brand-name">{{$business->name}}</p>
+            <!-- <p class="font-label-caps text-label-caps text-on-surface-variant brand-name">{{$business->name}}</p> -->
             <h2 class="font-display-lg text-display-lg text-primary">Joyería Xuping</h2>
         </div>
         <!-- Links Container -->
