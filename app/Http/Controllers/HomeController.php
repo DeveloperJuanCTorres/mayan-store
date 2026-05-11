@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Contactanos;
 use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Company;
@@ -12,6 +13,7 @@ use App\Models\Product;
 use App\Models\Taxonomy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class HomeController extends Controller
@@ -289,6 +291,17 @@ class HomeController extends Controller
                 'status' => false,
                 'msg' => 'Error: ' . $th->getMessage()
             ]);
+        }
+    }
+
+    public function correoContact(Request $request)
+    {
+        $correo = new Contactanos($request);
+        try {
+            Mail::to('informes@mayanstore.pe')->send($correo);
+            return response()->json(['status' => true, 'msg' => "El correo fue enviado satisfactoriamente"]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'msg' => "Hubo un error al enviar, inténtalo de nuevo más tarde." . $e->getMessage()]);
         }
     }
 }

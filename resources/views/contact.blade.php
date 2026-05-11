@@ -70,7 +70,7 @@
 
                         </div>
 
-                        <form class="space-y-12">
+                        <div class="space-y-12">
 
                             <!-- NAME -->
                             <div>
@@ -80,25 +80,43 @@
                                 </label>
 
                                 <input
-                                    type="text"
+                                    type="text" id="name"
                                     placeholder="Tu nombre completo"
-                                    class="w-full bg-transparent border-0 border-b border-[#e5e5e5] px-0 py-4 focus:ring-0 focus:border-[#c8a96b] text-lg placeholder:text-[#bbb]"
+                                    class="inputTexto w-full bg-transparent border-0 border-b border-[#e5e5e5] px-0 py-4 focus:ring-0 focus:border-[#c8a96b] text-lg placeholder:text-[#bbb]"
                                 >
 
                             </div>
 
                             <!-- EMAIL -->
-                            <div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
 
-                                <label class="block uppercase tracking-[0.25em] text-[11px] text-[#999] mb-5">
-                                    Correo Electrónico
-                                </label>
+                                    <label class="block uppercase tracking-[0.25em] text-[11px] text-[#999] mb-5">
+                                        Correo Electrónico
+                                    </label>
 
-                                <input
-                                    type="email"
-                                    placeholder="correo@ejemplo.com"
-                                    class="w-full bg-transparent border-0 border-b border-[#e5e5e5] px-0 py-4 focus:ring-0 focus:border-[#c8a96b] text-lg placeholder:text-[#bbb]"
-                                >
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        placeholder="correo@ejemplo.com"
+                                        class="inputTexto w-full bg-transparent border-0 border-b border-[#e5e5e5] px-0 py-4 focus:ring-0 focus:border-[#c8a96b] text-lg placeholder:text-[#bbb]"
+                                    >
+
+                                </div>
+
+                                <div>
+
+                                    <label class="block uppercase tracking-[0.25em] text-[11px] text-[#999] mb-5">
+                                        Teléfono
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="telefono"
+                                        class="w-full bg-transparent border-0 border-b border-[#e5e5e5] px-0 py-4 focus:ring-0 focus:border-[#c8a96b] text-lg placeholder:text-[#bbb]"
+                                    >
+
+                                </div>
 
                             </div>
 
@@ -110,22 +128,23 @@
                                 </label>
 
                                 <select
+                                    id="tipo-consulta"
                                     class="w-full bg-transparent border-0 border-b border-[#e5e5e5] px-0 py-4 focus:ring-0 focus:border-[#c8a96b] text-lg text-[#444]"
                                 >
 
-                                    <option>
+                                    <option value="Joya Personalizada">
                                         Joya Personalizada
                                     </option>
 
-                                    <option>
+                                    <option value="Compra Exclusiva">
                                         Compra Exclusiva
                                     </option>
 
-                                    <option>
+                                    <option value="Atención Premium">
                                         Atención Premium
                                     </option>
 
-                                    <option>
+                                    <option value="Consulta General">
                                         Consulta General
                                     </option>
 
@@ -141,9 +160,10 @@
                                 </label>
 
                                 <textarea
+                                    id="mensaje"
                                     rows="5"
                                     placeholder="Cuéntanos sobre tu requerimiento..."
-                                    class="w-full bg-transparent border-0 border-b border-[#e5e5e5] px-0 py-4 focus:ring-0 focus:border-[#c8a96b] text-lg placeholder:text-[#bbb] resize-none"
+                                    class="inputTexto w-full bg-transparent border-0 border-b border-[#e5e5e5] px-0 py-4 focus:ring-0 focus:border-[#c8a96b] text-lg placeholder:text-[#bbb] resize-none"
                                 ></textarea>
 
                             </div>
@@ -152,8 +172,7 @@
                             <div class="pt-4">
 
                                 <button
-                                    type="submit"
-                                    class="px-12 py-5 bg-[#1a1a1a] text-white rounded-full uppercase tracking-[0.3em] text-xs hover:bg-[#c8a96b] transition-all duration-500 hover:shadow-[0_10px_40px_rgba(200,169,107,0.35)]">
+                                    class="Enviarconsulta px-12 py-5 bg-[#1a1a1a] text-white rounded-full uppercase tracking-[0.3em] text-xs hover:bg-[#c8a96b] transition-all duration-500 hover:shadow-[0_10px_40px_rgba(200,169,107,0.35)]">
 
                                     Enviar Consulta
 
@@ -161,7 +180,7 @@
 
                             </div>
 
-                        </form>
+                        </div>
 
                     </div>
 
@@ -302,5 +321,180 @@
     </section>
 
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.querySelectorAll('.inputTexto').forEach(function (input) {
+    input.addEventListener('input', function (e) {
+        const prohibido = /[<>{};*$%=()&]/g; // Caracteres que quieres bloquear
+        if (prohibido.test(e.target.value)) {
+            e.target.value = e.target.value.replace(prohibido, '');
+        }
+    });
+});
+</script>
+
+<script>
+    let token = $('meta[name="csrf-token"]').attr('content');
+
+    $(function() {
+        $(".Enviarconsulta").on('click',function () {
+            var nombre = $("#name").val();
+            var email = $("#email").val();
+            var telefono = $("#telefono").val();
+            var tipo = $("#tipo-consulta").val();
+            var mensaje = $("#mensaje").val();
+
+            if(nombre == ''){
+                const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+                });
+                Toast.fire({
+                icon: "warning",
+                title: "Tienes que ingresar tu nombre"
+                });
+                return false;
+            }
+            if(email == ''){
+                const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+                });
+                Toast.fire({
+                icon: "warning",
+                title: "Tiene que ingresar un correo electrónico"
+                });
+                return false;
+            }
+            else
+            {
+                const valido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                if (!valido) {
+                    const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                    });
+                    Toast.fire({
+                    icon: "error",
+                    title: "Correo no válido"
+                    });
+                    return false;
+                }
+            }
+
+            if(telefono == ''){
+                const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+                });
+                Toast.fire({
+                icon: "warning",
+                title: "Tiene que ingresar un Teléfono para contacto"
+                });
+                return false;
+            }
+           
+            if(mensaje == ''){
+                const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+                });
+                Toast.fire({
+                icon: "warning",
+                title: "Tiene que ingresar el mensaje"
+                });
+                return false;
+            }
+            Swal.fire({
+                header: '...',
+                title: 'loading...',
+                allowOutsideClick:false,
+                didOpen: () => {
+                    Swal.showLoading()
+                }
+            });
+
+            $.ajax({
+                url: "/correo",
+                method: "post",
+                dataType: 'json',
+                data: {
+                    _token: token,
+                    nombre : nombre,
+                    email : email,
+                    telefono: telefono,
+                    tipo: tipo,
+                    mensaje: mensaje,
+                },
+                success: function (response) {
+                    if (response.status) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'OK',
+                            text: response.msg,
+                        })
+        // window.location.href = "https://elsvan.onfleekmedia.com/brochure.pdf";
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Oops...',
+                            text: response.msg,
+                        })
+                    }
+                    $("#name").val('');
+                    $("#email").val('');
+                    $("#telefono").val('');
+                    $("#tipo-consulta").val('');
+                    $("#message").val('');
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...!!',
+                        text: 'Algo salió mal, Inténtalo más tarde!',
+                    })
+                }
+            });
+        });
+    })
+</script>
 
 @endsection

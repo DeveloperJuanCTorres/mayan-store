@@ -40,6 +40,8 @@ Route::post('/cart/update', [CartController::class, 'update'])->name('cart.updat
 Route::post('/checkout/pedido', [PedidoController::class, 'pedido'])
     ->name('checkout.pedido');
 
+Route::post('/correo',[App\Http\Controllers\HomeController::class,'correoContact']);
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
