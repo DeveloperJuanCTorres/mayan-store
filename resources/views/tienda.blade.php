@@ -198,13 +198,13 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
 
                     <!-- LEFT -->
-                    <div class="lg:col-span-7">
+                    <div class="lg:col-span-6">
 
                         <!-- MAIN IMAGE -->
                         <div class="relative overflow-hidden rounded-[32px] bg-white border border-[#eee]">
 
                             <img id="modalImage"
-                                class="w-full h-[700px] object-cover transition-all duration-500"
+                                class="m-auto w-auto h-[500px] transition-all duration-500"
                                 src="{{ asset('images/product-default.png') }}"
                                 alt="Producto">
 
@@ -222,14 +222,14 @@
                     </div>
 
                     <!-- RIGHT -->
-                    <div class="lg:col-span-5 lg:sticky top-10">
+                    <div class="lg:col-span-6 lg:sticky top-10">
 
                         <p class="uppercase tracking-[0.4em] text-[#c8a96b] text-xs mb-5">
-                            Colección Exclusiva
+                            Xuping
                         </p>
 
                         <h1 id="modalName"
-                            class="text-5xl lg:text-6xl font-serif font-light leading-tight mb-6">
+                            class="text-3xl lg:text-4xl font-serif font-light leading-tight mb-6">
                         </h1>
 
                         <p id="modalPrice"
@@ -246,6 +246,17 @@
                             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
 
                             <span id="stock"
+                                class="text-sm text-[#555]">
+                            </span>
+
+                        </div>
+
+                        <!-- PRECIO MAYORISTA -->
+                        <div class="flex items-center gap-3 mb-10">
+
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+
+                            <span id="price_mayorista"
                                 class="text-sm text-[#555]">
                             </span>
 
@@ -421,6 +432,7 @@
             document.getElementById('modalPrice').innerText = 'S/. ' + parseFloat(product.price).toFixed(2);
             document.getElementById('modalDescription').innerText = product.description ?? 'Sin descripción disponible.';
             document.getElementById('stock').innerText = `Stock disponible (${product.stock} unidades)`;
+            document.getElementById('price_mayorista').innerText = 'Compras mayores o igual a 3 unidades  (S/. ' + parseFloat(product.price_mayorista).toFixed(2) + ')';
 
             // IMAGES
             let images = [];

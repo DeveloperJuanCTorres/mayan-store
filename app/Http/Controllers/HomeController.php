@@ -263,8 +263,11 @@ class HomeController extends Controller
                         // datos a actualizar o crear
                         [
                             'name' => $item->descripcion,
+                            'codigo_producto' => $item->codigo_producto,
                             'slug' => Str::slug($item->descripcion),
-                            'price' => $item->precio_venta,
+                            'price_mayorista' => $item->precio_mayorista,
+                            'price_cliente' => $item->precio_cliente,
+                            'price' => $item->precio_final,
                             'taxonomy_id' => $categoria->id,
                             'brand_id' => $marca->id,
                             'unidad_medida' => $item->presentacion,

@@ -22,7 +22,10 @@ class Product extends Model
         'images',
         'unidad_medida',
         'stock',
-        'slug'        
+        'slug',
+        'price_mayorista',
+        'price_cliente',
+        'codigo_producto'        
     ];
 
     public function taxonomy()

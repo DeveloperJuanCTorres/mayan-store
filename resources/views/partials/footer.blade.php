@@ -270,7 +270,7 @@
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/51999999999"
+<a href="https://wa.me/51{{$business->phone}}"
    target="_blank"
    class="fixed bottom-6 right-6 z-[9999] w-16 h-16 rounded-full bg-[#25D366] shadow-[0_10px_40px_rgba(37,211,102,0.45)] flex items-center justify-center text-white text-3xl hover:scale-110 transition-all duration-500">
 
