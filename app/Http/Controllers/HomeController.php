@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Contactanos;
+use App\Models\About;
 use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Company;
@@ -85,7 +86,8 @@ class HomeController extends Controller
     public function about()
     {
         $business = Company::find(1);
-        $nosotros = Page::where('slug', 'nosotros')->first();
+        // $nosotros = Page::where('slug', 'nosotros')->first();
+        $nosotros = About::first();
         return view('about', compact('business', 'nosotros'));
     }
 
