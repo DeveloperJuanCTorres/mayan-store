@@ -408,15 +408,19 @@
                             class="text-3xl lg:text-4xl font-serif font-light leading-tight mb-6">
                         </h1>
 
+                        <p id="modalCodigo" class="uppercase tracking-[0.2em] text-[14px] text-[#c8a96b] mb-2">
+                            
+                        </p>
+
                         <p id="modalPrice"
                         class="text-3xl font-light mb-8">
                         </p>
 
                         <p id="modalDescription"
-                        class="text-[#666] leading-8 text-lg mb-10">
+                        class="text-[#666] leading-8 text-lg mb-5">
                         </p>
 
-                        <div class="flex items-center gap-3 mb-10">
+                        <div class="flex items-center gap-3 mb-5">
 
                             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
 
@@ -425,7 +429,7 @@
                         </div>
 
                         <!-- PRECIO MAYORISTA -->
-                        <div class="flex items-center gap-3 mb-10">
+                        <div class="flex items-center gap-3 mb-5">
 
                             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
 
@@ -545,6 +549,8 @@
 
             document.getElementById('price_mayorista').innerText = 
                 'Compras mayores o igual a 3 unidades  (S/. ' + parseFloat(product.price_mayorista).toFixed(2) + ')';
+
+            document.getElementById('modalCodigo').innerText = product.id_sistema + ' - ' + product.codigo_producto;
 
 
             // IMAGES
