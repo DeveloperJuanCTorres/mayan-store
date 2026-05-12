@@ -139,7 +139,7 @@
 
                             <div>
                                 <p class="uppercase tracking-[0.3em] text-[#c8a96b] text-[10px] mb-2">
-                                    Exclusivo
+                                    {{$product->id_sistema . ' - ' . $product->codigo_producto}}
                                 </p>
 
                                 <h3 class="text-md font-serif leading-snug">
