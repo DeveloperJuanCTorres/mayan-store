@@ -56,7 +56,16 @@ class HomeController extends Controller
         $query = Product::with('brand', 'taxonomy');
 
         if ($request->search) {
-            $query->where('name', 'like', '%' . $request->search . '%');
+
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+
+                $q->where('name', 'like', '%' . $search . '%')
+                ->orWhere('codigo_producto', 'like', '%' . $search . '%');
+
+            });
+
         }
 
         if ($request->category) {

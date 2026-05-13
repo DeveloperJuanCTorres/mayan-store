@@ -198,7 +198,7 @@
                             <div class="p-8">
 
                                 <!-- code -->
-                                <p class="uppercase tracking-[0.35em] text-[#c8a96b] text-[9px] mb-4">
+                                <p class="uppercase tracking-[0.35em] text-[#c8a96b] text-[11px] mb-4">
 
                                     {{$product->id_sistema . ' - ' . $product->codigo_producto}}
 
