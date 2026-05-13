@@ -22,119 +22,171 @@
 
             @foreach($items as $item)
 
-            <div class="flex flex-col md:flex-row gap-8 pb-12 group">
+                @php
+                    $image = '/images/product-default.png';
 
-                {{-- IMAGEN --}}
-                <div
-                    class="w-full md:w-48 aspect-[3/4] bg-surface-container-low overflow-hidden rounded-xl">
+                    $images = $item->options->image;
 
-                    <img
-                        src="{{ asset('storage/' . $item->options->image) }}"
-                        alt="{{ $item->name }}"
-                        class="w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-700"
-                    />
+                    // si viene JSON string
+                    if (is_string($images)) {
 
-                </div>
+                        $decoded = json_decode($images, true);
 
-                <div class="flex-1 flex flex-col justify-between">
+                        if (
+                            json_last_error() === JSON_ERROR_NONE &&
+                            isset($decoded[0]['url_imagen'])
+                        ) {
+                            $image = $decoded[0]['url_imagen'];
+                        }
 
-                    <div>
+                    }
 
-                        {{-- NOMBRE + PRECIO --}}
-                        <div class="flex justify-between items-start mb-2">
+                    // si viene array
+                    elseif (is_array($images)) {
 
-                            <h2 class="text-2xl font-headline text-on-surface">
-                                {{ $item->name }}
-                            </h2>
+                        if (isset($images[0]['url_imagen'])) {
+                            $image = $images[0]['url_imagen'];
+                        }
 
-                            <p class="text-xl font-body font-medium text-on-surface">
-                                S/ {{ number_format($item->price, 2) }}
-                            </p>
+                    }
 
-                        </div>
+                @endphp
 
-                        {{-- SUBTOTAL --}}
-                        <div
-                            class="flex flex-wrap gap-x-6 gap-y-2 mt-4 text-sm text-secondary font-body tracking-wide uppercase">
+            <div class="group border-b border-outline-variant/10 py-6">
 
-                            <span class="flex items-center gap-1">
-                                Cantidad:
-                                <strong class="text-on-surface">
-                                    {{ $item->qty }}
-                                </strong>
-                            </span>
+                <div class="flex items-center gap-5">
 
-                            <span class="flex items-center gap-1">
-                                Subtotal:
-                                <strong class="text-on-surface">
-                                    S/ {{ number_format($item->price * $item->qty, 2) }}
-                                </strong>
-                            </span>
+                    {{-- IMAGEN --}}
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden bg-surface-container-low shrink-0">
 
-                        </div>
+                        <img
+                            src="{{ $image }}"
+                            alt="{{ $item->name }}"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        >
 
                     </div>
 
-                    <div class="flex justify-between items-end mt-8">
+                    {{-- INFO --}}
+                    <div class="flex-1 min-w-0">
 
-                        {{-- ACTUALIZAR CANTIDAD --}}
-                        <form
-                            action="{{ route('cart.update') }}"
-                            method="POST"
-                            class="flex items-center gap-4 bg-surface-container-high/50 p-1 px-3 rounded-full border border-outline-variant/10"
-                        >
-                            @csrf
+                        <div class="flex items-start justify-between gap-6">
 
-                            <input type="hidden" name="rowId" value="{{ $item->rowId }}">
+                            {{-- LEFT --}}
+                            <div class="min-w-0">
 
-                            <button
-                                type="button"
-                                onclick="decreaseQty(this)"
-                                class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
+                                <h2 class="text-[15px] md:text-base font-medium text-on-surface truncate">
+                                    {{ $item->name }}
+                                </h2>
+
+                                <div class="flex items-center gap-4 mt-2">
+
+                                    <span class="text-xs uppercase tracking-[0.15em] text-secondary">
+                                        Cantidad: {{ $item->qty }}
+                                    </span>
+
+                                    <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+
+                                    <span class="text-xs uppercase tracking-[0.15em] text-secondary">
+                                        Subtotal:
+                                        S/ {{ number_format($item->price * $item->qty, 2) }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            {{-- RIGHT --}}
+                            <div class="flex flex-col items-end shrink-0">
+
+                                <p class="text-lg font-medium text-on-surface">
+                                    S/ {{ number_format($item->price, 2) }}
+                                </p>
+
+                                @if($item->qty >= 3)
+
+                                    <span class="text-[10px] uppercase tracking-[0.2em] text-green-600 mt-1">
+                                        Mayorista
+                                    </span>
+
+                                @endif
+
+                            </div>
+
+                        </div>
+
+                        {{-- ACTIONS --}}
+                        <div class="flex items-center justify-between mt-5">
+
+                            {{-- QTY --}}
+                            <form
+                                action="{{ route('cart.update') }}"
+                                method="POST"
+                                class="flex items-center rounded-full border border-outline-variant/20 overflow-hidden h-10"
                             >
-                                <span class="material-symbols-outlined text-lg">remove</span>
-                            </button>
+                                @csrf
 
-                            <input
-                                type="text"
-                                name="qty"
-                                value="{{ $item->qty }}"
-                                min="1"
-                                class="w-10 bg-transparent text-center outline-none text-sm font-medium"
-                            >
+                                <input type="hidden" name="rowId" value="{{ $item->rowId }}">
 
-                            <button
-                                type="button"
-                                onclick="increaseQty(this)"
-                                class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
-                            >
-                                <span class="material-symbols-outlined text-lg">add</span>
-                            </button>
+                                <button
+                                    type="button"
+                                    onclick="decreaseQty(this)"
+                                    class="w-10 h-10 flex items-center justify-center hover:bg-black hover:text-white transition"
+                                >
+                                    −
+                                </button>
 
-                            <button type="submit" class="hidden update-cart-btn">
-                                actualizar
-                            </button>
+                                <input
+                                    type="text"
+                                    name="qty"
+                                    value="{{ $item->qty }}"
+                                    class="w-10 text-center text-sm bg-transparent outline-none"
+                                >
 
-                        </form>
+                                <button
+                                    type="button"
+                                    onclick="increaseQty(this)"
+                                    class="w-10 h-10 flex items-center justify-center hover:bg-black hover:text-white transition"
+                                >
+                                    +
+                                </button>
 
-                        {{-- ELIMINAR --}}
-                        <form action="{{ route('cart.remove') }}" method="POST">
-                            @csrf
+                                <button type="submit" class="hidden update-cart-btn">
+                                    actualizar
+                                </button>
 
-                            <input type="hidden" name="rowId" value="{{ $item->rowId }}">
+                            </form>
 
-                            <button
-                                class="flex items-center gap-2 text-xs uppercase tracking-widest text-on-surface-variant hover:text-error transition-colors group/del">
+                            {{-- REMOVE --}}
+                            <form action="{{ route('cart.remove') }}" method="POST">
+                                @csrf
 
-                                <span class="material-symbols-outlined text-lg group-hover/del:fill-[1]">
-                                    delete
-                                </span>
+                                <input type="hidden" name="rowId" value="{{ $item->rowId }}">
 
-                                <span>Eliminar</span>
+                                <button
+                                    class="inline-flex items-center justify-center gap-2
+                                    h-10 px-5 rounded-full
+                                    bg-red-50 text-red-600
+                                    border border-red-100
+                                    hover:bg-red-500 hover:text-white hover:border-red-500
+                                    transition-all duration-300
+                                    text-[11px] uppercase tracking-[0.2em] font-medium
+                                    shadow-sm hover:shadow-lg hover:shadow-red-500/20"
+                                >
 
-                            </button>
+                                    <span class="material-symbols-outlined text-[16px]">
+                                        delete
+                                    </span>
 
-                        </form>
+                                    <span>
+                                        Eliminar
+                                    </span>
+
+                                </button>
+
+                            </form>
+
+                        </div>
 
                     </div>
 

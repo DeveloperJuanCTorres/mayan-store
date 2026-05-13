@@ -71,7 +71,7 @@ async function loadCart() {
 
             console.error('Error cargando imágenes', e);
 
-        }
+        }       
 
         container.innerHTML += `
 
@@ -92,7 +92,7 @@ async function loadCart() {
                     </p>
 
                     <p class="text-base font-semibold text-[#c8a96b] mt-3">
-                        S/. ${parseFloat(item.price).toFixed(2)}
+                        S/. ${parseFloat(item.price_final).toFixed(2)}
                     </p>
 
                 </div>

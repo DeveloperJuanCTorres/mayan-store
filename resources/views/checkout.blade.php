@@ -209,6 +209,36 @@
 
                 @foreach($items as $item)
 
+                @php
+                    $image = '/images/product-default.png';
+
+                    $images = $item->options->image;
+
+                    // si viene JSON string
+                    if (is_string($images)) {
+
+                        $decoded = json_decode($images, true);
+
+                        if (
+                            json_last_error() === JSON_ERROR_NONE &&
+                            isset($decoded[0]['url_imagen'])
+                        ) {
+                            $image = $decoded[0]['url_imagen'];
+                        }
+
+                    }
+
+                    // si viene array
+                    elseif (is_array($images)) {
+
+                        if (isset($images[0]['url_imagen'])) {
+                            $image = $images[0]['url_imagen'];
+                        }
+
+                    }
+
+                @endphp
+
                 <div class="space-y-6 mb-8">
 
                     <div class="flex gap-4">
@@ -217,7 +247,7 @@
 
                             <img
                                 class="w-full h-full object-cover"
-                                src="{{ asset('storage/' . $item->options->image) }}"
+                                src="{{ $image }}"
                             >
 
                         </div>
