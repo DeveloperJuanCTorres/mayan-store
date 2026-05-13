@@ -246,12 +246,12 @@
 
             <div class="flex items-center gap-8 text-xs uppercase tracking-[0.2em] text-white/40">
 
-                <a href="#"
+                <a href="{{route('politicas')}}"
                 class="hover:text-[#c8a96b] transition-all">
                     Privacidad
                 </a>
 
-                <a href="#"
+                <a href="{{route('terminos')}}"
                 class="hover:text-[#c8a96b] transition-all">
                     Términos
                 </a>

@@ -11,8 +11,10 @@ use App\Models\Company;
 use App\Models\Favorite;
 use App\Models\Link;
 use App\Models\Page;
+use App\Models\Policy;
 use App\Models\Product;
 use App\Models\Taxonomy;
+use App\Models\Term;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
@@ -106,6 +108,20 @@ class HomeController extends Controller
     {
         $business = Company::find(1);
         return view('contact', compact('business'));
+    }
+
+    public function terminos()
+    {
+        $business = Company::find(1);
+        $terminos = Term::first();
+        return view('terminos', compact('business', 'terminos'));
+    }
+
+    public function politicas()
+    {
+        $business = Company::find(1);
+        $politicas = Policy::first();
+        return view('politicas', compact('business','politicas'));
     }
 
     public function reclamaciones()

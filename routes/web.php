@@ -37,6 +37,8 @@ Route::get('/cart/content', [CartController::class, 'content']);
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');;
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
+Route::get('/terminos-y-condiciones', [HomeController::class, 'terminos'])->name('terminos');
+Route::get('/politicas-de-seguridad', [HomeController::class, 'politicas'])->name('politicas');
 Route::get('/libro-reclamaciones', [HomeController::class, 'reclamaciones'])->name('libro-reclamaciones');
 Route::post('/reclamo',[HomeController::class,'correoReclamo']);
 
