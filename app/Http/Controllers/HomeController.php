@@ -273,7 +273,8 @@ class HomeController extends Controller
                             'unidad_medida' => $item->presentacion,
                             'stock' => $item->stock,
                             'images' => $item->imagen_web,
-                            'description' => $item->detalle_tecnico
+                            'description' => $item->detalle_tecnico,
+                            'destacado' => $item->destacado
                         ]
                     );
                 }

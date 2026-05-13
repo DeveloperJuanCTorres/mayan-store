@@ -25,7 +25,8 @@ class Product extends Model
         'slug',
         'price_mayorista',
         'price_cliente',
-        'codigo_producto'        
+        'codigo_producto',
+        'destacado'
     ];
 
     public function taxonomy()
