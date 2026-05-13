@@ -10,7 +10,7 @@
 
     <!-- BACKGROUND -->
     <div class="absolute inset-0">
-        <img src="{{ asset('storage/' . $business->image) }}"
+        <img src="{{ asset('images/isotipo.png')}}"
              class="w-full h-full object-cover scale-105 opacity-20"
              alt="">
         <div class="absolute inset-0 bg-black/80"></div>
@@ -31,7 +31,7 @@
                 <!-- LOGO / IMAGE -->
                 <div class="relative mx-auto mb-8 overflow-hidden ">
                     <img src="{{ asset('storage/' . $business->image) }}"
-                         class="w-full h-full object-cover"
+                         class="m-auto object-cover" width="400"
                          alt="">
                 </div>
 

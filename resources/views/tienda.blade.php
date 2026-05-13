@@ -89,9 +89,42 @@
             </aside>
 
             <!-- PRODUCTS -->
+            <!-- PRODUCTS -->
             <section class="flex-1">
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-24">
+                <!-- HEADER -->
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+
+                    <div>
+
+                        <p class="uppercase tracking-[0.45em] text-[#c8a96b] text-[10px] mb-4">
+                            Xuping
+                        </p>
+
+                        <h2 class="text-4xl lg:text-6xl font-serif font-light leading-none text-[#111]">
+                            Nuestra Colección
+                        </h2>
+
+                    </div>
+
+                    <div class="flex items-center gap-4">
+
+                        <div class="bg-white border border-[#ebe7df] rounded-full px-6 py-4 shadow-sm">
+
+                            <p class="uppercase tracking-[0.25em] text-[10px] text-[#777]">
+
+                                {{ $products->total() }} Productos Disponibles
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- GRID -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
 
                     @foreach($products as $product)
 
@@ -100,66 +133,140 @@
                         $firstImage = $images[0]['url_imagen'] ?? null;
                     @endphp
 
-                    <div class="group relative transition-all duration-500 hover:-translate-y-2">
+                    <!-- CARD -->
+                    <div class="group">
 
-                        <!-- IMAGE -->
-                        <div class="relative overflow-hidden rounded-[28px] bg-white shadow-sm">
+                        <div class="relative bg-white rounded-[36px] overflow-hidden border border-[#ece7df]
+                            hover:shadow-[0_30px_80px_rgba(0,0,0,0.08)]
+                            transition-all duration-700">
 
-                            <!-- badge -->
-                            <div class="absolute top-5 left-5 z-20 px-4 py-2 rounded-full bg-white/80 backdrop-blur-xl text-[10px] tracking-[0.3em] uppercase text-[#1a1a1a]">
-                                Imagen referencial
+                            <!-- IMAGE -->
+                            <div class="relative overflow-hidden bg-[#f5f1eb]">
+
+                                <!-- badge -->
+                                <div class="absolute top-6 left-6 z-20">
+
+                                    <div class="px-5 py-2 rounded-full bg-white/90 backdrop-blur-xl shadow-sm">
+
+                                        <p class="uppercase tracking-[0.3em] text-[9px] text-[#111]">
+                                            Xuping
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- actions -->
+                                <div class="absolute top-6 right-6 z-20 flex flex-col gap-3 opacity-0 translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+
+                                    <button
+                                        onclick="openProductModal({{ $product->id }})"
+                                        class="w-12 h-12 rounded-full bg-white text-[#111]
+                                        shadow-xl hover:bg-[#c8a96b] hover:text-white transition-all duration-300">
+
+                                        <i class="fa-solid fa-eye"></i>
+
+                                    </button>
+
+                                    <button
+                                        onclick="quickAddToCart({{ $product->id }})"
+                                        class="w-12 h-12 rounded-full bg-white text-[#111]
+                                        shadow-xl hover:bg-[#111] hover:text-white transition-all duration-300">
+
+                                        <i class="fa-solid fa-bag-shopping"></i>
+
+                                    </button>
+
+                                </div>
+
+                                <!-- image -->
+                                <img
+                                    src="{{ $firstImage ?? asset('images/product-default.png') }}"
+                                    alt="{{ $product->name }}"
+                                    class="w-full h-[520px] object-cover transition-all duration-700 group-hover:scale-105"
+                                >
+
+                                <!-- overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+
                             </div>
 
-                            <img
-                                class="w-full h-[430px] object-cover transition duration-700 group-hover:scale-110 group-hover:rotate-1"
-                                src="{{ $firstImage ?? asset('images/product-default.png') }}"
-                                alt="{{ $product->name }}"
-                            >
+                            <!-- INFO -->
+                            <div class="p-8">
 
-                            <!-- overlay -->
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-500"></div>
+                                <!-- code -->
+                                <p class="uppercase tracking-[0.35em] text-[#c8a96b] text-[9px] mb-4">
 
-                            <!-- button -->
-                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
-
-                                <button
-                                    onclick="openProductModal({{ $product->id }})"
-                                    class="bg-white text-black px-8 py-4 rounded-full uppercase tracking-[0.25em] text-xs shadow-2xl hover:bg-[#c8a96b] hover:text-white transition-all duration-500">
-
-                                    Ver Detalles
-
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        <!-- INFO -->
-                        <div class="pt-6 space-y-4">
-
-                            <div>
-                                <p class="uppercase tracking-[0.3em] text-[#c8a96b] text-[10px] mb-2">
                                     {{$product->id_sistema . ' - ' . $product->codigo_producto}}
+
                                 </p>
 
-                                <h3 class="text-md font-serif leading-snug">
+                                <!-- title -->
+                                <h3 class="text-[20px] leading-snug text-[#111] mb-5 min-h-[58px]">
+
                                     {{ $product->name }}
+
                                 </h3>
+
+                                <!-- divider -->
+                                <div class="w-full h-[1px] bg-[#f1ece5] mb-6"></div>
+
+                                <!-- footer -->
+                                <div class="flex items-end justify-between gap-5">
+
+                                    <div>
+
+                                        <p class="text-3xl font-light text-[#111] tracking-tight">
+
+                                            S/. {{ number_format($product->price, 2) }}
+
+                                        </p>
+
+                                        @if($product->price_mayorista)
+
+                                        <p class="text-[11px] text-[#888] mt-2 uppercase tracking-[0.15em]">
+
+                                            Mayorista:
+                                            S/. {{ number_format($product->price_mayorista, 2) }}
+
+                                        </p>
+
+                                        @endif
+
+                                    </div>
+
+                                    <!-- button -->
+                                    <button
+                                        onclick="quickAddToCart({{ $product->id }})"
+                                        class="px-6 py-4 rounded-full bg-[#111] text-white
+                                        uppercase tracking-[0.25em] text-[10px]
+                                        hover:bg-[#c8a96b]
+                                        transition-all duration-500">
+
+                                        Agregar
+
+                                    </button>
+
+                                </div>
+
                             </div>
 
-                            <p class="text-2xl font-light tracking-wide text-[#1a1a1a]">
-                                S/. {{ number_format($product->price, 2) }}
-                            </p>
+                            <!-- stock -->
+                            @if($product->stock <= 3)
 
-                            <button
-                                onclick="quickAddToCart({{ $product->id }})"
-                                class="w-full py-4 rounded-full border border-[#c8a96b] bg-[#c8a96b] text-white
-                                hover:bg-[#c8a96b] hover:text-[#1a1a1a]
-                                transition-all duration-500 uppercase tracking-[0.25em] text-xs">
+                            <div class="absolute bottom-6 left-6">
 
-                                Agregar al carrito
+                                <div class="px-4 py-2 rounded-full bg-red-500 text-white shadow-lg">
 
-                            </button>
+                                    <p class="uppercase tracking-[0.25em] text-[9px]">
+                                        Últimas unidades
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            @endif
 
                         </div>
 
@@ -170,8 +277,10 @@
                 </div>
 
                 <!-- PAGINATION -->
-                <div class="mt-24">
+                <div class="mt-24 flex justify-center">
+
                     {{ $products->links('vendor.pagination.luxury') }}
+
                 </div>
 
             </section>
