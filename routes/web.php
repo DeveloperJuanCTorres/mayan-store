@@ -37,6 +37,9 @@ Route::get('/cart/content', [CartController::class, 'content']);
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');;
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
+Route::get('/libro-reclamaciones', [HomeController::class, 'reclamaciones'])->name('libro-reclamaciones');
+Route::post('/reclamo',[HomeController::class,'correoReclamo']);
+
 Route::post('/checkout/pedido', [PedidoController::class, 'pedido'])
     ->name('checkout.pedido');
 

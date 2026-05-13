@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Contactanos;
+use App\Mail\Reclamos;
 use App\Models\About;
 use App\Models\Banner;
 use App\Models\Brand;
@@ -105,6 +106,23 @@ class HomeController extends Controller
     {
         $business = Company::find(1);
         return view('contact', compact('business'));
+    }
+
+    public function reclamaciones()
+    {
+        $business = Company::find(1);
+        return view('libro-reclamaciones', compact('business'));
+    }
+
+    public function correoReclamo(Request $request)
+    {
+        $correo = new Reclamos($request);
+        try {
+            Mail::to('informes@mayanstore.pe')->send($correo);
+            return response()->json(['status' => true, 'msg' => "El correo fue enviado satisfactoriamente"]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'msg' => "Hubo un error al enviar, inténtalo de nuevo más tarde." . $e->getMessage()]);
+        }
     }
     
     public function apiBrand()

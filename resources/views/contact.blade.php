@@ -326,14 +326,14 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-document.querySelectorAll('.inputTexto').forEach(function (input) {
-    input.addEventListener('input', function (e) {
-        const prohibido = /[<>{};*$%=()&]/g; // Caracteres que quieres bloquear
-        if (prohibido.test(e.target.value)) {
-            e.target.value = e.target.value.replace(prohibido, '');
-        }
+    document.querySelectorAll('.inputTexto').forEach(function (input) {
+        input.addEventListener('input', function (e) {
+            const prohibido = /[<>{};*$%=()&]/g; // Caracteres que quieres bloquear
+            if (prohibido.test(e.target.value)) {
+                e.target.value = e.target.value.replace(prohibido, '');
+            }
+        });
     });
-});
 </script>
 
 <script>

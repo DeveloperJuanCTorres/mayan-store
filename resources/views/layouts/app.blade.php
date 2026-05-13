@@ -104,6 +104,7 @@
     <link href="{{asset('css/styles.css')}}?v=<?php echo $version ?>" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="{{asset('css/phone.css')}}?v=<?php echo $version ?>" rel="stylesheet">
 
     <!-- Scripts -->
     <!-- vite(['resources/sass/app.scss', 'resources/js/app.js']) -->
@@ -120,7 +121,10 @@
         @include('partials.footer')
     @endif
 
+    
     <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="{{asset('js/phone.js')}}"></script>
+    <script src="{{asset('js/ubigeo.js')}}"></script>
 
 </body>
 

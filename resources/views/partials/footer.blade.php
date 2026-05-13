@@ -256,7 +256,7 @@
                     Términos
                 </a>
 
-                <a href="#"
+                <a href="{{route('libro-reclamaciones')}}"
                 class="hover:text-[#c8a96b] transition-all">
                     Libro de Reclamaciones
                 </a>
