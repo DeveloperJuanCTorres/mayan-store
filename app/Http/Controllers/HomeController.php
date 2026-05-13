@@ -62,7 +62,8 @@ class HomeController extends Controller
             $query->where(function ($q) use ($search) {
 
                 $q->where('name', 'like', '%' . $search . '%')
-                ->orWhere('codigo_producto', 'like', '%' . $search . '%');
+                ->orWhere('codigo_producto', 'like', '%' . $search . '%')
+                ->orWhere('id_sistema', 'like', '%' . $search . '%');
 
             });
 
