@@ -202,7 +202,7 @@
                                 </p>
 
                                 <!-- title -->
-                                <h3 class="text-[20px] leading-snug text-[#111] mb-5 min-h-[58px]">
+                                <h3 class="text-[16px] leading-snug text-[#111] mb-5 min-h-[58px]">
 
                                     {{ $product->name }}
 
