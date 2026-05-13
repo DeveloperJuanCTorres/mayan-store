@@ -57,7 +57,7 @@
             </div>
 
             <!-- DESKTOP SIDEBAR -->
-            <aside class="hidden lg:block w-full lg:w-72 sticky top-28 h-fit">
+            <!-- <aside class="hidden lg:block w-full lg:w-72 sticky top-28 h-fit">
 
                 <div class="bg-white rounded-3xl p-8 shadow-sm border border-[#eee]">
 
@@ -83,6 +83,206 @@
                         @endforeach
 
                     </ul>
+
+                </div>
+
+            </aside> -->
+
+            <!-- SIDEBAR FILTERS -->
+            <aside class="hidden lg:block w-full lg:w-[320px]">
+
+                <div class="sticky top-28">
+
+                    <div class="bg-white/80 backdrop-blur-2xl rounded-[36px]
+                        border border-white shadow-[0_20px_60px_rgba(0,0,0,0.06)]
+                        overflow-hidden">
+
+                        <!-- HEADER -->
+                        <div class="p-8 border-b border-[#f1ece5]">
+
+                            <p class="uppercase tracking-[0.4em] text-[#c8a96b] text-[10px] mb-3">
+                                Luxury Filters
+                            </p>
+
+                            <h3 class="text-3xl font-serif font-light text-[#111]">
+                                Filtrar Productos
+                            </h3>
+
+                        </div>
+
+                        <!-- CONTENT -->
+                        <div class="p-8 space-y-10">
+
+                            <!-- CATEGORIES -->
+                            <div>
+
+                                <div class="flex items-center justify-between mb-6">
+
+                                    <h4 class="uppercase tracking-[0.25em] text-[11px] text-[#999]">
+                                        Categorías
+                                    </h4>
+
+                                    <span class="text-xs text-[#bbb]">
+                                        {{ count($categories) }}
+                                    </span>
+
+                                </div>
+
+                                <!-- scroll area -->
+                                <div class="max-h-[320px] overflow-y-auto pr-2 custom-scroll space-y-3">
+
+                                    <!-- all products -->
+                                    <a href="{{ route('tienda') }}"
+                                    class="group flex items-center justify-between px-5 py-4 rounded-2xl
+                                    bg-[#f8f6f2] hover:bg-[#111] transition-all duration-300">
+
+                                        <span class="text-sm text-[#444] group-hover:text-white transition">
+                                            Todos los productos
+                                        </span>
+
+                                        <span class="text-[#c8a96b] group-hover:text-white transition">
+                                            →
+                                        </span>
+
+                                    </a>
+
+                                    @foreach($categories as $category)
+
+                                    <a href="{{ route('tienda', ['category' => $category->id]) }}"
+                                    class="group flex items-center justify-between px-5 py-4 rounded-2xl
+                                    bg-[#f8f6f2] hover:bg-[#111] transition-all duration-300">
+
+                                        <span class="text-sm text-[#444] group-hover:text-white transition">
+
+                                            {{ $category->name }}
+
+                                        </span>
+
+                                        <span class="text-[#c8a96b] group-hover:text-white transition">
+                                            →
+                                        </span>
+
+                                    </a>
+
+                                    @endforeach
+
+                                </div>
+
+                            </div>
+
+                            <!-- PRICE FILTER -->
+                            <div>
+
+                                <div class="flex items-center justify-between mb-6">
+
+                                    <h4 class="uppercase tracking-[0.25em] text-[11px] text-[#999]">
+                                        Filtrar por Precio
+                                    </h4>
+
+                                </div>
+
+                                <form method="GET" action="{{ route('tienda') }}" class="space-y-5">
+
+                                    <!-- preserve category -->
+                                    @if(request('category'))
+                                        <input type="hidden" name="category" value="{{ request('category') }}">
+                                    @endif
+
+                                    <!-- min -->
+                                    <div>
+
+                                        <label class="block text-xs uppercase tracking-[0.2em] text-[#999] mb-3">
+
+                                            Precio mínimo
+
+                                        </label>
+
+                                        <div class="relative">
+
+                                            <span class="absolute left-5 top-1/2 -translate-y-1/2 text-[#999] text-sm">
+                                                S/.
+                                            </span>
+
+                                            <input
+                                                type="number"
+                                                name="min_price"
+                                                value="{{ request('min_price') }}"
+                                                placeholder="0"
+                                                class="w-full h-14 rounded-2xl bg-[#f8f6f2]
+                                                border border-transparent
+                                                focus:border-[#c8a96b]
+                                                focus:ring-0
+                                                pl-14 pr-5 text-sm outline-none transition-all duration-300"
+                                            >
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- max -->
+                                    <div>
+
+                                        <label class="block text-xs uppercase tracking-[0.2em] text-[#999] mb-3">
+
+                                            Precio máximo
+
+                                        </label>
+
+                                        <div class="relative">
+
+                                            <span class="absolute left-5 top-1/2 -translate-y-1/2 text-[#999] text-sm">
+                                                S/.
+                                            </span>
+
+                                            <input
+                                                type="number"
+                                                name="max_price"
+                                                value="{{ request('max_price') }}"
+                                                placeholder="500"
+                                                class="w-full h-14 rounded-2xl bg-[#f8f6f2]
+                                                border border-transparent
+                                                focus:border-[#c8a96b]
+                                                focus:ring-0
+                                                pl-14 pr-5 text-sm outline-none transition-all duration-300"
+                                            >
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- buttons -->
+                                    <div class="flex gap-3 pt-2">
+
+                                        <button
+                                            type="submit"
+                                            class="flex-1 h-14 rounded-2xl bg-[#111]
+                                            text-white uppercase tracking-[0.25em] text-[11px]
+                                            hover:bg-[#c8a96b]
+                                            transition-all duration-500">
+
+                                            Aplicar
+
+                                        </button>
+
+                                        <a href="{{ route('tienda') }}"
+                                        class="h-14 px-6 rounded-2xl bg-[#f3efe8]
+                                        flex items-center justify-center
+                                        text-[#777] hover:bg-[#111] hover:text-white
+                                        transition-all duration-500">
+
+                                            <i class="fa-solid fa-rotate-right"></i>
+
+                                        </a>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -222,7 +422,7 @@
 
                                         </p>
 
-                                        @if($product->price_mayorista)
+                                        @if($product->stock >= 3)
 
                                         <p class="text-[11px] text-[#888] mt-2 uppercase tracking-[0.15em]">
 
@@ -230,6 +430,22 @@
                                             S/. {{ number_format($product->price_mayorista, 2) }}
 
                                         </p>
+
+                                        @else
+                                        <!-- stock -->                          
+
+                                        <div class="bottom-6 left-6 mt-2">
+
+                                            <div class="px-4 py-2 rounded-full bg-red-500 text-white shadow-lg">
+
+                                                <p class="uppercase tracking-[0.25em] text-[7px]">
+                                                    Últimas unidades
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
 
                                         @endif
 
@@ -251,22 +467,7 @@
 
                             </div>
 
-                            <!-- stock -->
-                            @if($product->stock < 3)
-
-                            <div class="absolute bottom-6 left-6">
-
-                                <div class="px-4 py-2 rounded-full bg-red-500 text-white shadow-lg">
-
-                                    <p class="uppercase tracking-[0.25em] text-[9px]">
-                                        Últimas unidades
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            @endif
+                            
 
                         </div>
 
