@@ -100,10 +100,6 @@
                         <!-- HEADER -->
                         <div class="p-8 border-b border-[#f1ece5]">
 
-                            <p class="uppercase tracking-[0.4em] text-[#c8a96b] text-[10px] mb-3">
-                                Luxury Filters
-                            </p>
-
                             <h3 class="text-3xl font-serif font-light text-[#111]">
                                 Filtrar Productos
                             </h3>
