@@ -183,7 +183,7 @@
                                 <img
                                     src="{{ $firstImage ?? asset('images/product-default.png') }}"
                                     alt="{{ $product->name }}"
-                                    class="w-full h-[520px] object-cover transition-all duration-700 group-hover:scale-105"
+                                    class="m-auto w-auto h-[300px] transition-all duration-700 group-hover:scale-105"
                                 >
 
                                 <!-- overlay -->
@@ -252,7 +252,7 @@
                             </div>
 
                             <!-- stock -->
-                            @if($product->stock <= 3)
+                            @if($product->stock < 3)
 
                             <div class="absolute bottom-6 left-6">
 
