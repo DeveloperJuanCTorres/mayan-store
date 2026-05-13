@@ -118,11 +118,11 @@
                     </span>
                 </h2>
 
-            </div>
 
-            <p class="max-w-md text-[#666] leading-relaxed">
-                Diseños exclusivos elaborados artesanalmente con acabados premium y detalles únicos.
-            </p>
+                <p class="max-w-md text-[#666] leading-relaxed mt-4">
+                    Diseños exclusivos elaborados artesanalmente con acabados premium y detalles únicos.
+                </p>
+            </div>           
 
         </div>
 
