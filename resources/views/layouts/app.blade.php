@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <?php
-    $version = '1993.4.8';
+    $version = '1993.4.9';
     ?>
 
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logos/16x16.png') }}?v=<?php echo $version ?>">
