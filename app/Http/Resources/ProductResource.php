@@ -18,7 +18,14 @@ class ProductResource extends JsonResource
         $imageArray = json_decode($this->images, true);
 
         // Aseguramos que sea un array y obtenemos la primera imagen
-        $firstImage = is_array($imageArray) && count($imageArray) > 0 ? $imageArray[0] : null;
+        // $firstImage = is_array($imageArray) && count($imageArray) > 0 ? $imageArray[0] : null;
+
+        // Obtener solo la primera url_imagen
+        $firstImage = null;
+
+        if (is_array($imageArray) && count($imageArray) > 0) {
+            $firstImage = $imageArray[0]['url_imagen'] ?? null;
+        }
 
         return [
             'id'            => $this->id,
@@ -31,7 +38,8 @@ class ProductResource extends JsonResource
             'description'   => $this->description,
             'information'   => $this->information,
             'price'         => $this->price,            
-            'images'        => $this->images,
+            // 'images'        => $this->images,
+            'images'        => $firstImage,
             'unidad_medida' => $this->unidad_medida,
             'stock'         => $this->stock,
             'slug'          => $this->slug,  
