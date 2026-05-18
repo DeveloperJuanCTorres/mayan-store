@@ -27,4 +27,6 @@ Route::middleware('apikey')->group(function () {
     Route::post('addproduct', [ProductController::class, 'addProduct']);
     Route::get('/products', [ProductController::class, 'listProducts']);
 
+    Route::post('/products/buscar', [ProductoController::class, 'buscar']);
+
 });

@@ -258,4 +258,20 @@ class ProductController extends Controller
         // return response()->json($products);
         return ProductResource::collection($products);
     }
+
+    public function buscar(Request $request)
+    {
+        $request->validate([
+            'palabra' => 'required|string|min:1'
+        ]);
+
+        $palabra = $request->input('palabra');
+
+        $productos = Product::where('name', 'like', "%{$palabra}%")
+            ->where('stock', '>', 0) 
+            ->limit(3)
+            ->get();
+
+        return ProductResource::collection($productos);
+    }
 }
