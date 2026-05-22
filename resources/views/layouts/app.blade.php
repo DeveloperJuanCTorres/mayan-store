@@ -129,21 +129,25 @@
     <script>
 
     Swal.fire({
-        toast: true,
-        position: 'top-end',
         icon: 'success',
-        title: 'Pedido enviado correctamente',
-        showConfirmButton: false,
-        timer: 3500,
-        timerProgressBar: true,
-        background: '#1f2937',
-        color: '#fff',
-        didOpen: (toast) => {
+        title: '¡Pedido enviado correctamente!',
+        html: `
+            <div style="font-size:14px; line-height:1.8;">
+                Hemos recibido su pedido satisfactoriamente.<br><br>
 
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
+                Se ha enviado automáticamente el PDF con el detalle de su pedido
+                a su WhatsApp registrado.<br><br>
 
-        }
+                Gracias por confiar en nosotros.
+            </div>
+        `,
+        confirmButtonText: 'Continuar',
+        confirmButtonColor: '#c8a96b',
+        background: '#111827',
+        color: '#ffffff',
+        backdrop: `
+            rgba(0,0,0,0.75)
+        `
     });
 
     </script>
