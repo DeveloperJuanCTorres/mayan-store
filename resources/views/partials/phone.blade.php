@@ -237,7 +237,7 @@
         <li value="Zimbabwe"><span class="fflag fflag-ZW ff-lg ff-round" data-isocountrycode="ZW" data-countrycode="+263" data-placeholder="e.g. 00525544332211"></span>Zimbabue +263</li>
     </ul>
 
-    <input type="hidden" class="e-input-phone-country-code" id="codigo" name="codigo" maxlength="20" value="+51">
+    <input type="hidden" class="e-input-phone-country-code" id="codigo" name="codigo" maxlength="20" value="51">
 
     <input type="number" class="e-text e-input-telephone" id="telefono" name="telefono" maxlength="40" placeholder="Número teléfono">
 </div>
