@@ -121,6 +121,55 @@
         @include('partials.footer')
     @endif
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('pedido_success'))
+
+    <script>
+
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: 'Pedido enviado correctamente',
+        showConfirmButton: false,
+        timer: 3500,
+        timerProgressBar: true,
+        background: '#1f2937',
+        color: '#fff',
+        didOpen: (toast) => {
+
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+
+        }
+    });
+
+    </script>
+
+    @endif
+
+    @if(session('error'))
+
+    <script>
+
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'error',
+        title: @json(session('error')),
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        background: '#7f1d1d',
+        color: '#fff'
+    });
+
+    </script>
+
+    @endif
+
     
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{asset('js/phone.js')}}"></script>

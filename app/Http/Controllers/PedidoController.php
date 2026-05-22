@@ -125,7 +125,7 @@ class PedidoController extends Controller
 
             return redirect()
                 ->route('home')
-                ->with('success', 'Pedido enviado correctamente');
+                ->with('pedido_success', true);
 
         } catch (\Throwable $th) {
 

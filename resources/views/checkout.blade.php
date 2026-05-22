@@ -28,6 +28,7 @@
         <div class="lg:col-span-7">
 
             <form
+                id="checkoutForm"
                 action="{{ route('checkout.pedido') }}"
                 method="POST"
                 class="space-y-12"
@@ -180,6 +181,7 @@
                     </a>
 
                     <button
+                        id="btnEnviarPedido"
                         type="submit"
                         class="w-full sm:w-auto px-12 py-5 bg-gold-gradient text-white rounded-full font-label text-[10px] uppercase tracking-[0.2em] font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all"
                     >
@@ -292,5 +294,62 @@
     </div>
 
 </div>
+
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const form = document.getElementById('checkoutForm');
+        const btn = document.getElementById('btnEnviarPedido');
+
+        form.addEventListener('submit', function () {
+
+            btn.disabled = true;
+
+            btn.innerHTML = `
+                <div class="flex items-center justify-center gap-3">
+                    <svg class="animate-spin h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24">
+
+                        <circle
+                            class="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            stroke-width="4">
+                        </circle>
+
+                        <path
+                            class="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v8z">
+                        </path>
+
+                    </svg>
+
+                    Procesando...
+                </div>
+            `;
+
+            Swal.fire({
+                title: 'Procesando pedido',
+                text: 'Espere un momento por favor...',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+        });
+
+    });
+    
+</script>
 
 @endsection
