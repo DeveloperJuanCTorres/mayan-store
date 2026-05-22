@@ -81,15 +81,6 @@
                                 Teléfono
                             </label>
 
-                            <!-- <input
-                                type="text"
-                                name="telefono"
-                                value="{{ old('telefono') }}"
-                                required
-                                class="bg-transparent border-b border-outline-variant/30 focus:border-primary px-0 py-2 outline-none"
-                                placeholder="999999999"
-                            > -->
-
                             @include('partials.phone')
                         </div>
 
