@@ -144,21 +144,36 @@
 
                                     @foreach($categories as $category)
 
-                                    <a href="{{ route('tienda', ['category' => $category->id]) }}"
-                                    class="group flex items-center justify-between px-5 py-4 rounded-2xl
-                                    bg-[#f8f6f2] hover:bg-[#111] transition-all duration-300">
+                                        @php
+                                            $isActive = request('category') == $category->id;
+                                        @endphp
 
-                                        <span class="text-sm text-[#444] group-hover:text-white transition">
+                                        <a href="{{ route('tienda', ['category' => $category->id]) }}"
+                                        class="group flex items-center justify-between px-5 py-4 rounded-2xl transition-all duration-300
+                                        {{ $isActive
+                                            ? 'bg-[#111] text-white shadow-lg'
+                                            : 'bg-[#f8f6f2] hover:bg-[#111]'
+                                        }}">
+                                            
+                                            <span class="text-sm transition
+                                            {{ $isActive
+                                                ? 'text-white'
+                                                : 'text-[#444] group-hover:text-white'
+                                            }}">
 
-                                            {{ $category->name }}
+                                                {{ $category->name }}
 
-                                        </span>
+                                            </span>
 
-                                        <span class="text-[#c8a96b] group-hover:text-white transition">
-                                            →
-                                        </span>
+                                            <span class="transition
+                                            {{ $isActive
+                                                ? 'text-[#c8a96b]'
+                                                : 'text-[#c8a96b] group-hover:text-white'
+                                            }}">
+                                                →
+                                            </span>
 
-                                    </a>
+                                        </a>
 
                                     @endforeach
 
