@@ -43,7 +43,7 @@ class PedidoController extends Controller
 
             $orden = Order::create([
                 'name' => $request->nombre,
-                'telefono' => str_replace('+', '', $request->codigo) . $request->telefono,
+                'telefono' => $request->codigo . $request->telefono,
                 'email' => $request->email,
                 'direccion' => $request->direccion,
                 'departamento' => $request->departamento,
@@ -107,7 +107,7 @@ class PedidoController extends Controller
 
                 Http::post($apis->ruta_whatsapp, [
                     "ruc_empresa" => $business->ruc,
-                    "numero_celular" => str_replace('+', '', $request->codigo) . $request->telefono,
+                    "numero_celular" => $request->codigo . $request->telefono,
                     "mensaje" => 'Gracias por su pedido, adjuntamos el detalle de compra.',
                     "ruta_imagen" => config('app.url') . '/storage/pedidos/' . $pdfPath,
                     "apikey_bot" => $apis->apikey_bot_whatsapp,
