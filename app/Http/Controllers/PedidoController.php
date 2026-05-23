@@ -108,7 +108,7 @@ class PedidoController extends Controller
                 Http::post($apis->ruta_whatsapp, [
                     "ruc_empresa" => $business->ruc,
                     "numero_celular" => $request->codigo . $request->telefono,
-                    "mensaje" => 'Gracias por su pedido, adjuntamos el detalle de compra.',
+                    "mensaje" => "Gracias por su pedido. Adjuntamos el detalle de su compra en PDF.\n\nSi desea, también podemos enviarle nuestras formas de pago y opciones disponibles para finalizar su pedido.",
                     "ruta_imagen" => config('app.url') . '/storage/pedidos/' . $pdfPath,
                     "apikey_bot" => $apis->apikey_bot_whatsapp,
                     "ruta_bot" => $apis->ruta_bot_whatsapp
