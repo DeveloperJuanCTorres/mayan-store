@@ -130,7 +130,8 @@ class CartController extends Controller
             'price' => $finalPrice,
             'options' => [
                 'image' => $product->images,
-                'price_mayorista' => $product->price_mayorista
+                'price_mayorista' => $product->price_mayorista,
+                'codigo_producto' => $product->codigo_producto
             ]
         ]);
 
@@ -185,6 +186,8 @@ class CartController extends Controller
             // subtotal correcto
             $subtotal = $finalPrice * $item->qty;
 
+            $codigo_producto = $item->options->codigo_producto ?? null;
+
             return [
                 'rowId' => $item->rowId,
                 'name' => $item->name,
@@ -198,7 +201,8 @@ class CartController extends Controller
                 // subtotal calculado
                 'subtotal' => $subtotal,
 
-                'image' => $item->options->image ?? null
+                'image' => $item->options->image ?? null,   
+                'codigo_producto' => $codigo_producto
             ];
         });
 

@@ -492,7 +492,7 @@
                     </td>
 
                     <td>
-                        {{ $item->name }}
+                        {{ $item->name }} Codigo: {{($item->options->codigo_producto ?? 'N/A') }}
                     </td>
 
                     <td class="text-right">
