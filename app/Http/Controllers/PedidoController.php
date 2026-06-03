@@ -25,7 +25,7 @@ class PedidoController extends Controller
                 'email' => 'required|email',
                 'direccion' => 'required',
                 'departamento' => 'required',
-                'provincia' => 'required',
+                // 'provincia' => 'required',
                 'distrito' => 'required',
             ]);
 
