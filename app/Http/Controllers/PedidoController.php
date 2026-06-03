@@ -44,8 +44,8 @@ class PedidoController extends Controller
             */
 
             $orden = Order::create([
-                'nombres' => $request->nombres,
-                'apellidos' => $request->apellidos,
+                'name' => $request->nombres,
+                // 'apellidos' => $request->apellidos,
                 'telefono' => $request->codigo . $request->telefono,
                 'email' => $request->email,
                 'direccion' => $request->direccion,
