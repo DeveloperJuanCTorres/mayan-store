@@ -52,8 +52,8 @@
 
                             <input
                                 type="text"
-                                name="nombre"
-                                value="{{ old('nombre') }}"
+                                name="nombres"
+                                value="{{ old('nombres') }}"
                                 required
                                 class="bg-transparent border-b border-outline-variant/30 focus:border-primary px-0 py-2 outline-none"
                                 placeholder="Ingrese su nombre"
