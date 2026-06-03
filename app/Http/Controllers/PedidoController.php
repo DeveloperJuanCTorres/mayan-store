@@ -19,11 +19,13 @@ class PedidoController extends Controller
         try {
 
             $request->validate([
-                'nombre' => 'required',
+                'nombres' => 'required',
+                'apellidos' => 'required',
                 'telefono' => 'required',
                 'email' => 'required|email',
                 'direccion' => 'required',
                 'departamento' => 'required',
+                'provincia' => 'required',
                 'distrito' => 'required',
             ]);
 
@@ -42,11 +44,13 @@ class PedidoController extends Controller
             */
 
             $orden = Order::create([
-                'name' => $request->nombre,
+                'nombres' => $request->nombres,
+                'apellidos' => $request->apellidos,
                 'telefono' => $request->codigo . $request->telefono,
                 'email' => $request->email,
                 'direccion' => $request->direccion,
                 'departamento' => $request->departamento,
+                'provincia' => $request->provincia,
                 'distrito' => $request->distrito,
                 'referencia' => $request->referencia,
                 'total' => $total
@@ -108,8 +112,8 @@ class PedidoController extends Controller
                 Http::post($apis->ruta_whatsapp, [
                     "ruc_empresa" => $business->ruc,
                     "numero_celular" => $request->codigo . $request->telefono,
-                    // "mensaje" => "Gracias por su pedido. Adjuntamos el detalle de su compra en PDF.\n\nSi desea, también podemos enviarle nuestras formas de pago y opciones disponibles para finalizar su pedido.",
-                    "mensaje" => $orden->id,
+                    "mensaje" => "Gracias por su pedido. Adjuntamos el detalle de su compra en PDF.\n\nSi desea, también podemos enviarle nuestras formas de pago y opciones disponibles para finalizar su pedido.",
+                    // "mensaje" => $orden->id,
                     "ruta_imagen" => config('app.url') . '/storage/pedidos/' . $pdfPath,
                     "apikey_bot" => $apis->apikey_bot_whatsapp,
                     "ruta_bot" => $apis->ruta_bot_whatsapp
