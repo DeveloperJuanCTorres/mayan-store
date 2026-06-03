@@ -20,7 +20,7 @@ class PedidoController extends Controller
 
             $request->validate([
                 'nombres' => 'required',
-                'apellidos' => 'required',
+                // 'apellidos' => 'required',
                 'telefono' => 'required',
                 'email' => 'required|email',
                 'direccion' => 'required',
