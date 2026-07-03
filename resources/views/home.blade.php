@@ -463,6 +463,18 @@
                                 src="{{ asset('images/product-default.png') }}"
                                 alt="Producto">
 
+                            <div class="mt-5 flex justify-center">
+                                <button
+                                    onclick="shareCurrentImage()"
+                                    class="px-6 py-3 rounded-full bg-[#111]
+                                    text-white hover:bg-[#c8a96b]
+                                    transition flex items-center gap-3">
+
+                                    <i class="fa-solid fa-share-nodes"></i>
+                                    Compartir
+                                </button>
+                            </div>
+
                             <div class="absolute top-6 left-6 px-5 py-2 rounded-full bg-white/80 backdrop-blur-xl text-[10px] tracking-[0.3em] uppercase">
                                 Imagen referencial
                             </div>
@@ -595,6 +607,9 @@
     let maxStock = 1;
     let currentProductId = null;
 
+    let currentImage = '';
+    let currentProductName = '';
+
     async function openProductModal(id) {
 
         const modal = document.getElementById('productModal');
@@ -615,6 +630,8 @@
             document.getElementById('quantity').innerText = currentQty;
 
             // DATA
+            currentProductName = product.name;
+
             document.getElementById('modalName').innerText = product.name;
 
             document.getElementById('modalPrice').innerText =
@@ -650,19 +667,17 @@
             }
 
             // MAIN IMAGE
-            if (
-                images &&
-                images.length > 0 &&
-                images[0]['url_imagen']
-            ) {
+            if (images && images.length > 0 && images[0]['url_imagen']) {
 
-                document.getElementById('modalImage').src =
-                    images[0]['url_imagen'];
+                currentImage = images[0]['url_imagen'];
+
+                document.getElementById('modalImage').src = currentImage;
 
             } else {
 
-                document.getElementById('modalImage').src =
-                    fallbackImage;
+                currentImage = fallbackImage;
+
+                document.getElementById('modalImage').src = fallbackImage;
 
             }
 
@@ -732,6 +747,8 @@
 
     function changeMainImage(src) {
 
+        currentImage = src;
+
         document.getElementById('modalImage').src = src;
 
     }
@@ -797,6 +814,50 @@
             }
 
             alert('Producto agregado correctamente');
+
+        }
+
+    }
+
+    async function shareCurrentImage() {
+
+        try {
+
+            const response = await fetch(currentImage);
+
+            const blob = await response.blob();
+
+            const file = new File(
+                [blob],
+                "producto.jpg",
+                { type: blob.type }
+            );
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+
+                await navigator.share({
+
+                    title: currentProductName,
+
+                    text: currentProductName,
+
+                    files: [file]
+
+                });
+
+            } else {
+
+                window.open(
+                    'https://wa.me/?text=' +
+                    encodeURIComponent(currentProductName + '\n' + currentImage),
+                    '_blank'
+                );
+
+            }
+
+        } catch (e) {
+
+            console.error(e);
 
         }
 

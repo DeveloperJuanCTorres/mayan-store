@@ -49,14 +49,18 @@ class HomeController extends Controller
         $business = Company::find(1);
         $banners = Banner::all();
         $favoritos = Favorite::first();
-        $products_destacados = Product::where('destacado', 1)->take(8)->get();
+        $products_destacados = Product::where('destacado', 1)
+            ->where('stock', '>', 0)
+            ->take(8)
+            ->get();
+
         return view('home', compact('business', 'banners', 'products_destacados', 'favoritos'));
     }
 
     public function tienda(Request $request)
     {
          $business = Company::find(1);
-        $query = Product::with('brand', 'taxonomy');
+        $query = Product::with('brand', 'taxonomy')->where('stock', '>', 0);
 
         if ($request->search) {
 
