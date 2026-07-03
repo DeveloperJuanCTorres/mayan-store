@@ -965,7 +965,11 @@
 
         try {
 
-            const response = await fetch(currentImage);
+            // const response = await fetch(currentImage);
+            const proxyUrl =
+                '/proxy-image?url=' + encodeURIComponent(currentImage);
+
+            const response = await fetch(proxyUrl);
 
             const blob = await response.blob();
 

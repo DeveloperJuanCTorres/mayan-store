@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageProxyController;
 use App\Http\Controllers\PedidoController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,8 @@ Route::get('/terminos-y-condiciones', [HomeController::class, 'terminos'])->name
 Route::get('/politicas-de-seguridad', [HomeController::class, 'politicas'])->name('politicas');
 Route::get('/libro-reclamaciones', [HomeController::class, 'reclamaciones'])->name('libro-reclamaciones');
 Route::post('/reclamo',[HomeController::class,'correoReclamo']);
+
+Route::get('/proxy-image', [ImageProxyController::class, 'show']);
 
 Route::post('/checkout/pedido', [PedidoController::class, 'pedido'])
     ->name('checkout.pedido');
